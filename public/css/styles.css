@@ -1,0 +1,186 @@
+/* --------------------------------------
+   Layout
+   -------------------------------------- */
+
+body {
+    /*font-family: 'Poiret One', cursive;*/
+    /*font-family: 'Neucha', cursive;*/
+    /*font-family: 'Tenor Sans', sans-serif;*/
+    /*font-family: 'Anonymous Pro';*/
+    /*font-family: 'Open Sans Condensed', sans-serif;*/
+   /*background-color: #6E7F80;*/
+
+    padding-top: 70px; /*body to be below the navbar*/
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+    /*font-size: 16px;*/
+    /*line-height: 1.42857143;*/
+    /*color: #333;*/
+}
+
+footer {
+    background: #333;
+    color: #eee;
+    font-size: 11px;
+    padding: 20px;
+}
+
+
+/* for Home page*/
+.thumbnail img.fromHome /*Оразмерява thumbnail*/
+{
+    max-height:150px;
+    max-width:150px;
+}
+/*ограничава дължината на текста, като го прехварля на друг ред*/
+.ff
+{
+    max-width:150px;
+    word-wrap: break-word;
+}
+
+
+/*Настройка на падащите менюта*/
+.dropdown-submenu {
+    position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+.dropdown-submenu.pull-left {
+    float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* For products editing page*/
+.ng-table {
+    border: 1px solid #000;
+}
+
+
+
+
+/*for product adding page*/
+
+/*Adjusting of file-upload button*/
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+
+.thumbnail img.prevImg /*Adjusting preview thumbnail image*/
+{
+    max-height:200px;
+    max-width:200px;
+}
+
+
+
+
+
+/* for IE*/
+/*.js-fileapi-wrapper {*/
+    /*display: inline-block;*/
+    /*vertical-align: middle;*/
+/*}*/
+
+/* --------------------------------------
+   Navbar
+   -------------------------------------- */
+
+/*#searchInput {*/
+	/*width: 200px;*/
+/*}*/
+
+/*.navbar-brand {*/
+	/*padding: 13px 15px;*/
+/*}*/
+
+/* --------------------------------------
+   Global Styles
+   -------------------------------------- */
+
+/*.alert {*/
+	/*margin-top: 20px;*/
+	/*display: none;*/
+/*}*/
+
+
+
+.panel-footer.pros-color{
+    height: auto;
+    background: #daf0e2;
+    text-align: right;
+    color: #2d6ca2;
+    font-size: 12px;
+
+}
+.panel-footer.cons-color{
+    height: auto;
+    background: #ffd4d4;
+    text-align: right;
+    color: #2d6ca2;
+    font-size: 12px;
+}
+
+

@@ -1,0 +1,23 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-10"><a href="" ng-click="prev()" class="btn btn-default">Prew</a><a href="" ng-click="next()" class="btn btn-default">Next</a><br/>
+      <div class="row">
+        <div class="col-md-5">
+          <select id="selected" class="form-control">
+            <option>All Products</option>
+            <option>New Only</option>
+            <option>New Comments Only</option>
+          </select>
+        </div>
+      </div><br/>
+      <div class="container">
+        <ul class="list-inline">
+          <li ng-repeat="item in products"><a href="/productEdit/{{item._id}}" class="thumbnail">
+              <p>Наименование:  {{item.name}}</p><img ng-src="{{item.picture[0].filename}}"/></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

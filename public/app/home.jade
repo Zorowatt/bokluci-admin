@@ -1,0 +1,20 @@
+.container
+    .row
+        .col-md-2
+        .col-md-10
+            a(href="", class="btn btn-default", ng-click="prev()") Prew
+            a(href="", class="btn btn-default", ng-click="next()") Next
+            br
+            .row
+                .col-md-5
+                    select.form-control(id='selected')
+                        option All Products
+                        option New Only
+                        option New Comments Only
+            br
+            .container
+                ul.list-inline
+                    li(ng-repeat='item in products')
+                        a.thumbnail(href='/productEdit/{{item._id}}')
+                            p Наименование:  {{item.name}}
+                            img(ng-src = '{{item.picture[0].filename}}')

@@ -1,0 +1,115 @@
+//input.form-control(type="text", ng-model='Product.maker')
+.container
+    .row
+        .col-md-3
+            img(ng-src='{{Product.picture[0].filename}}')
+            form.form-horizontal(role="form")
+                .form-group
+                    label.col-sm-4.control-label User:
+                    .col-sm-8
+                        input.form-control.input-sm(type="text", ng-model="Product.picture[0].userAdded ", ng-bind='Product.picture[0].userAdded')
+                .form-group
+                    label.col-sm-4.control-label Date for the picture:
+                    .col-sm-8
+                        input.form-control.input-sm(type="text", ng-model="Product.picture[0].dateAdded", ng-bind='Product.picture[0].dateAdded')
+
+        .col-md-9
+            form.form-horizontal(role="form")
+                .form-group
+                    label.col-sm-4.control-label Наименование:
+                    .col-sm-8
+                        input.form-control(autofocus="autofocus", type="text", ng-model="Product.name", ng-bind='Product.name')
+                .form-group
+                    label.col-sm-4.control-label Производител:
+                    .col-sm-8
+                        input.form-control.input-sm(type="text", ng-model="Product.maker", ng-bind='Product.maker')
+                .form-group
+                    label.col-sm-4.control-label Модел:
+                    .col-sm-8
+                        input.form-control.input-sm(type="text", ng-model="Product.productModel", ng-bind='Product.productModel')
+                .form-group
+                    label.col-sm-4.control-label Произход:
+                    .col-sm-8
+                        input.form-control.input-sm(type="text", ng-model="Product.origin", ng-bind='Product.origin')
+                .form-group
+                    label.col-sm-4.control-label Магазин име:
+                    .col-sm-8
+                        input.form-control.input-sm(type="text", ng-model="Product.reseller.name", ng-bind='Product.reseller.name')
+                .form-group
+                    label.col-sm-4.control-label Закупен в Град:
+                    .col-sm-8
+                        input.form-control.input-sm(type="text", ng-model="Product.reseller.town", ng-bind='Product.reseller.town')
+                .form-group
+                    label.col-sm-4.control-label Цена:
+                    .col-sm-8
+                        input.form-control.input-sm(type="text", ng-model="Product.reseller.price", ng-bind='Product.reseller.price')
+                .form-group
+                    label.col-sm-4.control-label Дата на Покупка:
+                    .col-sm-8
+                        input.form-control.input-sm(type="text", ng-model="Product.reseller.dateBought", ng-bind='Product.reseller.dateBought')
+                .form-group
+                    label.col-sm-4.control-label Ключови думи:
+                    .col-sm-8
+                        input.form-control.input-sm(type="text", ng-model="keyWords")
+                .form-group
+                    label.col-sm-4.control-label Категории:
+                    .col-sm-8
+                        input.form-control.input-sm(type="text", ng-model="category")
+    br
+    form.form-inline
+        label.checkbox Is new comment
+            input.checkbox(type="checkbox", ng-model='Product.flagNewCommentAdded', ng-bind = 'Product.flagNewCommentAdded', ng-change='changeForUpdate()')
+    form.form-inline
+        label.checkbox Is new
+            input.checkbox(type="checkbox", ng-model='Product.flagIsNew', ng-bind = 'Product.flagIsNew', ng-change='changeForUpdate()')
+    button.btn.btn-primary(id='update', ng-click="updateProduct()") Update
+
+    a.btn.btn-warning(href='/', ng-click = 'deleteProduct()') Delete
+
+    hr
+    .row
+        .col-md-6
+            .panel.panel-success
+                .panel-heading ЗА:
+                .panel-body
+                    ul.list-unstyled
+                        li.panel.panel-default(ng-repeat='pros in Product.pros')
+                            .panel-heading
+                                form.form-inline
+                                    .form-group
+                                        .checkbox
+                                            label is New
+                                                input(type="checkbox", ng-model='pros.flagIsNew', ng-bind = 'pros.flagIsNew', ng-change='changeForUpdate()')
+                                        button.btn.btn-warning(ng-click="removeCommentFromPros(pros)") Remove
+                            .panel-body
+                                textarea.form-control(rows=5, ng-model='pros.content', ng-bind = 'pros.content')
+                            .panel-footer.pros-color
+                                | User:&nbsp
+                                span(ng-bind = 'pros.userAdded')
+                                br
+                                | Date:&nbsp
+                                span(ng-bind = 'pros.dateAdded')
+
+        .col-md-6
+            .panel.panel-danger
+                .panel-heading ПРОТИВ:
+                .panel-body
+                    ul.list-unstyled
+                        li.panel.panel-default(ng-repeat='cons in Product.cons')
+                            .panel-heading
+                                form.form-inline
+                                    .form-group
+                                        .checkbox
+                                            label is New
+                                                input.checkbox(type="checkbox", ng-model='cons.flagIsNew', ng-bind = 'cons.flagIsNew', ng-change='changeForUpdate()')
+                                        button.btn.btn-warning(ng-click="removeCommentFromCons(cons)") Remove
+                            .panel-body
+                                textarea.form-control(rows=5, ng-model='cons.content', ng-bind = 'cons.content')
+                            .panel-footer.cons-color
+                                | User:&nbsp
+                                span(ng-bind = 'cons.userAdded')
+                                br
+                                | Date:&nbsp
+                                span(ng-bind = 'cons.dateAdded')
+
+

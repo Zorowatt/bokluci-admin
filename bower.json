@@ -1,0 +1,30 @@
+{
+  "name": "TelericAcademyCourses",
+  "version": "0.0.1",
+  "description": "MEAN Stack application",
+  "main": "server.js",
+  "authors": [
+    "Zlatozar Dichev"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "angular": "~1.2.19",
+    "angular-resource": "~1.2.19",
+    "angular-route": "~1.2.19",
+    "toastr": "~2.0.3",
+    "bootstrap": "~3.2.0",
+    "ng-table": "~0.3.3",
+    "angular-bootstrap": "~0.11.0",
+    "angular-file-upload": "~1.1.1",
+    "ng-file-upload": "~1.6.5"
+  }
+}
