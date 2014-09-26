@@ -2,19 +2,23 @@
     .row
         .col-md-2
         .col-md-10
-            a(href="", class="btn btn-default", ng-click="prev()") Prew
-            a(href="", class="btn btn-default", ng-click="next()") Next
+            ul.pager
+                li
+                    a.btn.btn-default(href="", ng-click="prev()") Prew
+                li
+                    a.btn.btn-default(href="", ng-click="next()") Next
             br
             .row
                 .col-md-5
                     select.form-control(id='selected')
-                        option All Products
                         option New Only
                         option New Comments Only
+                        option All Products
             br
             .container
                 ul.list-inline
                     li(ng-repeat='item in products')
                         a.thumbnail(href='/productEdit/{{item._id}}')
-                            p Наименование:  {{item.name}}
-                            img(ng-src = '{{item.picture[0].filename}}')
+                            p.fix-text-length Наименование:  {{item.name}}
+                            img.home-image(ng-src='/get_image/{{item.picture[0].filename}}')
+

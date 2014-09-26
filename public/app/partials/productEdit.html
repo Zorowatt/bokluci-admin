@@ -1,8 +1,7 @@
 
-<!--input.form-control(type="text", ng-model='Product.maker')-->
 <div class="container">
   <div class="row">
-    <div class="col-md-3"><img ng-src="{{Product.picture[0].filename}}"/>
+    <div class="col-md-3"><img ng-src="/get_image/{{Product.picture[0].filename}}" class="fromEdit"/>
       <form role="form" class="form-horizontal">
         <div class="form-group">
           <label class="col-sm-4 control-label">User:</label>
@@ -82,18 +81,20 @@
         </div>
       </form>
     </div>
-  </div><br/>
-  <form class="form-inline">
-    <label class="checkbox">Is new comment
-      <input type="checkbox" ng-model="Product.flagNewCommentAdded" ng-bind="Product.flagNewCommentAdded" ng-change="changeForUpdate()" class="checkbox"/>
-    </label>
-  </form>
-  <form class="form-inline">
-    <label class="checkbox">Is new
-      <input type="checkbox" ng-model="Product.flagIsNew" ng-bind="Product.flagIsNew" ng-change="changeForUpdate()" class="checkbox"/>
-    </label>
-  </form>
-  <button id="update" ng-click="updateProduct()" class="btn btn-primary">Update</button><a href="/" ng-click="deleteProduct()" class="btn btn-warning">Delete</a>
+  </div>
+  <div class="container"><br/>
+    <form class="form-inline">
+      <label class="checkbox">Is new comment
+        <input type="checkbox" ng-model="Product.flagNewCommentAdded" ng-bind="Product.flagNewCommentAdded" ng-change="changeForUpdate()" class="checkbox"/>
+      </label>
+    </form>
+    <form class="form-inline">
+      <label class="checkbox">Is new
+        <input type="checkbox" ng-model="Product.flagIsNew" ng-bind="Product.flagIsNew" ng-change="changeForUpdate()" class="checkbox"/>
+      </label>
+    </form>
+    <button id="update" ng-click="updateProduct()" class="btn btn-primary">Update</button><a href="/" ng-click="deleteProduct()" class="btn btn-warning">Delete</a>
+  </div>
   <hr/>
   <div class="row">
     <div class="col-md-6">

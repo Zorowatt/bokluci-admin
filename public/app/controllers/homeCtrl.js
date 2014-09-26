@@ -1,32 +1,25 @@
 app.controller('HomeCtrl',['$scope','$resource' ,function($scope, $resource) {
-    // Showing the Products and dealing with the Prev and Next buttons
+    //Product request
     function load(skip, limit, kind) {
         var res = $resource('/api');
         return res.query({s: skip ,l: limit, new: kind});
     }
-//    function loadByComment(skip, limit) {
-//        var res = $resource('/api/comment');
-//        return res.query({s: skip ,l: limit});
-//    }
-    var pos = 0;
-    $scope.step = 3;
-    var oldOrNew = 0;
 
+    var pos = 0; //from zero position
+    $scope.step = 5; //show only five products per page
+    var oldOrNew = 0; //show newly added products only
+
+    //Initial product load
+    $scope.products = load(pos,$scope.step,oldOrNew);
+
+    //Select which products to be shown on
     $('#selected').on('change', function(){
         oldOrNew = $('option:selected',$(this)).index();
         pos = 0;
         $scope.products = load(pos,$scope.step,oldOrNew);
     });
 
-
-    $scope.products = load(pos,$scope.step,oldOrNew);
-
-    $('#checkNew').on('click',function(){
-        oldOrNew = !oldOrNew;
-        pos = 0;
-        $scope.products = load(pos,$scope.step,oldOrNew);
-    });
-
+    //Preview and Next Buttons
     $scope.prev = function(){
         pos = pos - $scope.step;
         if (pos < 0){

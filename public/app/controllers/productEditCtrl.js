@@ -1,5 +1,6 @@
 app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'productsCRUD',
     function($scope, $routeParams, $resource, productsCRUD) {
+
     var p = $resource('/api/product/:id',{id: $routeParams.id});
     p.get().$promise.then(function(product) {
                 $scope.Product = product;
@@ -39,9 +40,13 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
 
     //Remove product
     $scope.deleteProduct = function () {
-        //TODO
         if (confirm('You are about to DELETE the entire Product?')){
-            productsCRUD.delete($scope.Product);
+            //productsCRUD.delete($scope.Product);
+            var p = $resource('/api/delete/:id',{id: $routeParams.id});
+            p.get().$promise.then(function(product) {
+                //console.log(product);
+                //$scope.Product = product;
+            });
         }
     };
 
