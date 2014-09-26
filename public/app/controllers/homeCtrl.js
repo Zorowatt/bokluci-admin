@@ -6,7 +6,7 @@ app.controller('HomeCtrl',['$scope','$resource' ,function($scope, $resource) {
     }
 
     var pos = 0; //from zero position
-    $scope.step = 5; //show only five products per page
+    $scope.step = 6; //show only five products per page
     var oldOrNew = 0; //show newly added products only
 
     //Initial product load
@@ -21,25 +21,20 @@ app.controller('HomeCtrl',['$scope','$resource' ,function($scope, $resource) {
 
     //Preview and Next Buttons
     $scope.prev = function(){
-        pos = pos - $scope.step;
-        if (pos < 0){
-          pos = 0;
+        if (pos >= $scope.step) {
+            pos = pos - $scope.step;
+            load(pos, $scope.step, oldOrNew).$promise.then(function (result) {
+                $scope.products = result;
+            });
         };
-        load(pos,$scope.step,oldOrNew).$promise.then(function(result){
-            $scope.products = result;
-        });
     };
     $scope.next = function(){
         pos = pos + $scope.step;
         load(pos,$scope.step,oldOrNew).$promise.then(function(result){
-
             if (result.length === 0) {
-
                 pos = pos - $scope.step;
-                $scope.products = load(pos,$scope.step,oldOrNew);
             }
             else {
-
                 $scope.products = result;
             };
         });

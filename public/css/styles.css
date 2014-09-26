@@ -20,7 +20,7 @@ footer {
 .thumbnail{
     display: block;
     width: 140px;
-    height: 250;
+    min-height: 250px;
 }
 /*Оразмерява thumbnail*/
 .home-image{
