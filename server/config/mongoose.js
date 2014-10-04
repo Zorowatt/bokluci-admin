@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    products = require('../models/Products');
+    products = require('../models/Products'),
+    searchbuffer = require('../models/SearchBuffer');
 
 
 module.exports = function(){
@@ -18,7 +19,7 @@ module.exports = function(){
     });
 
     products.seedInitialProducts();
-
+    searchbuffer.seedInitialBuffer();
 
 //    var userSchema = mongoose.Schema ({
 //        username: String,

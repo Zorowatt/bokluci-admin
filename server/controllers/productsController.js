@@ -1,4 +1,5 @@
 var Products = require('mongoose').model('Product');
+var Search = require('mongoose').model('SearchBuffer');
 var mongoose = require('mongoose');
 var Grid = require('gridfs-stream');
 var db = mongoose.connection;
@@ -55,6 +56,15 @@ module.exports = {
     updateProduct : function(req, res, next) {
         var t = req.body;
         //console.log(t);
+        //Adding to search buffer
+        //TODO remove unused values
+        Search.update({name: 'n/a'},{ $addToSet: { buffer: { $each: t.keyWords } } },
+            function(err, edited) {
+                if (err) {
+                    console.log('Error: ' + err);
+                    return;
+                }
+            });
         Products.findByIdAndUpdate({_id : req.params.id},{
                 name: t.name,
                 origin: t.origin,

@@ -15,7 +15,7 @@ footer {
 }
 
 
-/* for Home page*/
+/*----------------------------------------- for Home page ------------------------------------------*/
 
 .thumbnail{
     display: block;
@@ -24,9 +24,9 @@ footer {
 }
 /*Оразмерява thumbnail*/
 .home-image{
-width: auto;
-max-height: 100px;
-overflow: hidden;
+    width: auto;
+    max-height: 100px;
+    overflow: hidden;
 }
 /*ограничава дължината на текста, като го прехвърля на друг ред*/
 .fix-text-length{
@@ -35,7 +35,7 @@ overflow: hidden;
 }
 
 
-/*for Edit Page*/
+/*------------------------------------------- for Edit Page --------------------------------------------*/
 img.fromEdit /*Оразмерява thumbnail*/
 {
     max-height:300px;
