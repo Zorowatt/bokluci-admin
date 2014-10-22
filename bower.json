@@ -1,10 +1,10 @@
 {
-  "name": "TelericAcademyCourses",
+  "name": "BokluciAdmin",
   "version": "0.0.1",
-  "description": "MEAN Stack application",
+  "description": "BokluciteKoitoKupuvame",
   "main": "server.js",
   "authors": [
-    "Zlatozar Dichev"
+    "ZorroAcademy"
   ],
   "license": "MIT",
   "ignore": [
@@ -22,7 +22,6 @@
     "angular-route": "~1.2.19",
     "toastr": "~2.0.3",
     "bootstrap": "~3.2.0",
-    "ng-table": "~0.3.3",
     "angular-bootstrap": "~0.11.0",
     "angular-file-upload": "~1.1.1",
     "ng-file-upload": "~1.6.5"

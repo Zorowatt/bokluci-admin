@@ -96,13 +96,34 @@ module.exports = {
                 console.log('Products can not be loaded: ' + err);
             }
             //Remove the product picture from the GridFS
-            gfs.remove({"filename": collection.picture[0].filename}, function(err, edited) {
-                if (err){
-                    console.log('Error: '+ err);
-                    return;
-                }
-                console.log('Picture with filename: '+ collection.picture[0].filename + '   REMOVED');;
-            });
+            if (collection.picture[0]) {
+                gfs.remove({"filename": collection.picture[0].filename}, function (err, edited) {
+                    if (err) {
+                        console.log('Error: ' + err);
+                        return;
+                    }
+                    console.log('Picture with filename: ' + collection.picture[0].filename + '   REMOVED');
+                    ;
+                });
+            }else{
+                console.log('picture is missing');
+            }
+            if (collection.thumbnail) {
+                gfs.remove({"filename": collection.thumbnail}, function (err, edited) {
+                    if (err) {
+                        console.log('Error: ' + err);
+                        return;
+                    }
+                    console.log('Thumbnail with filename: ' + collection.thumbnail + '   REMOVED');
+                    ;
+                });
+            }else{
+                console.log('picture is missing');
+            }
+
+
+
+
         });
         //Remove the product from the mongoDB
         Products.remove({_id: req.params.id}, function(err, edited) {
