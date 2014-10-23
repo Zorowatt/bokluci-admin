@@ -15,7 +15,7 @@ module.exports = {
         });
         readstream.on('error', function (err) {
             console.log('An error occurred!', err);
-            throw err;
+            //throw err;
         });
         readstream.pipe(res);
     },
@@ -91,49 +91,36 @@ module.exports = {
 
     removeProduct : function(req, res, next) {
         //Get filename of the picture before product being removed
-        Products.findOne({_id: req.params.id}).exec(function(err, collection) {
+        Products.findOneAndRemove({_id: req.params.id}).exec(function (err, collection) {
             if (err) {
                 console.log('Products can not be loaded: ' + err);
             }
-            //Remove the product picture from the GridFS
-            if (collection.picture[0]) {
-                gfs.remove({"filename": collection.picture[0].filename}, function (err, edited) {
-                    if (err) {
-                        console.log('Error: ' + err);
-                        return;
-                    }
-                    console.log('Picture with filename: ' + collection.picture[0].filename + '   REMOVED');
-                    ;
-                });
-            }else{
-                console.log('picture is missing');
+            if (collection) {
+                //Remove the product picture from the GridFS
+                if (!!collection.picture) {
+                    gfs.remove({"filename": collection.picture[0].filename}, function (err, edited) {
+                        if (err) {
+                            console.log('Error: ' + err);
+                            return;
+                        }
+                        console.log('Picture with filename: ' + collection.picture[0].filename + '   REMOVED');
+                    });
+                } else {
+                    console.log('picture is missing');
+                }
+                if (!!collection.thumbnail) {
+                    gfs.remove({"filename": collection.thumbnail}, function (err, edited) {
+                        if (err) {
+                            console.log('Error: ' + err);
+                            return;
+                        }
+                        console.log('Thumbnail with filename: ' + collection.thumbnail + '   REMOVED');
+                    });
+                } else {
+                    console.log('picture is missing');
+                }
             }
-            if (collection.thumbnail) {
-                gfs.remove({"filename": collection.thumbnail}, function (err, edited) {
-                    if (err) {
-                        console.log('Error: ' + err);
-                        return;
-                    }
-                    console.log('Thumbnail with filename: ' + collection.thumbnail + '   REMOVED');
-                    ;
-                });
-            }else{
-                console.log('picture is missing');
-            }
-
-
-
-
+            res.end();
         });
-        //Remove the product from the mongoDB
-        Products.remove({_id: req.params.id}, function(err, edited) {
-            if (err){
-                console.log('Error: '+ err);
-                return;
-            }
-            console.log('Product with _id: '+ req.params.id + '   REMOVED');
-
-            });
-        res.end();
     }
-    };
+};
