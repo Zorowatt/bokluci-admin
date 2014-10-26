@@ -3,7 +3,7 @@
         .col-md-3
             img.fromEdit(ng-src='/get_image/{{Product.picture[0].filename}}')
             form.form-horizontal(role="form")
-                .form-group
+                //.form-group
                     label.col-sm-4.control-label User:
                     .col-sm-8
                         input.form-control.input-sm(type="text", ng-model="Product.picture[0].userAdded ", ng-bind='Product.picture[0].userAdded')
@@ -18,34 +18,34 @@
                     label.col-sm-4.control-label Наименование:
                     .col-sm-8
                         input.form-control(autofocus="autofocus", type="text", ng-model="Product.name", ng-bind='Product.name')
-                .form-group
-                    label.col-sm-4.control-label Производител:
-                    .col-sm-8
-                        input.form-control.input-sm(type="text", ng-model="Product.maker", ng-bind='Product.maker')
-                .form-group
-                    label.col-sm-4.control-label Модел:
-                    .col-sm-8
-                        input.form-control.input-sm(type="text", ng-model="Product.productModel", ng-bind='Product.productModel')
-                .form-group
-                    label.col-sm-4.control-label Произход:
-                    .col-sm-8
-                        input.form-control.input-sm(type="text", ng-model="Product.origin", ng-bind='Product.origin')
-                .form-group
-                    label.col-sm-4.control-label Магазин име:
-                    .col-sm-8
-                        input.form-control.input-sm(type="text", ng-model="Product.reseller.name", ng-bind='Product.reseller.name')
-                .form-group
-                    label.col-sm-4.control-label Закупен в Град:
-                    .col-sm-8
-                        input.form-control.input-sm(type="text", ng-model="Product.reseller.town", ng-bind='Product.reseller.town')
-                .form-group
-                    label.col-sm-4.control-label Цена:
-                    .col-sm-8
-                        input.form-control.input-sm(type="text", ng-model="Product.reseller.price", ng-bind='Product.reseller.price')
-                .form-group
-                    label.col-sm-4.control-label Дата на Покупка:
-                    .col-sm-8
-                        input.form-control.input-sm(type="text", ng-model="Product.reseller.dateBought", ng-bind='Product.reseller.dateBought')
+                //.form-group
+                //    label.col-sm-4.control-label Производител:
+                //    .col-sm-8
+                //        input.form-control.input-sm(type="text", ng-model="Product.maker", ng-bind='Product.maker')
+                //.form-group
+                //    label.col-sm-4.control-label Модел:
+                //    .col-sm-8
+                //        input.form-control.input-sm(type="text", ng-model="Product.productModel", ng-bind='Product.productModel')
+                //.form-group
+                //    label.col-sm-4.control-label Произход:
+                //    .col-sm-8
+                //        input.form-control.input-sm(type="text", ng-model="Product.origin", ng-bind='Product.origin')
+                //.form-group
+                //    label.col-sm-4.control-label Магазин име:
+                //    .col-sm-8
+                //        input.form-control.input-sm(type="text", ng-model="Product.reseller.name", ng-bind='Product.reseller.name')
+                //.form-group
+                //    label.col-sm-4.control-label Закупен в Град:
+                //    .col-sm-8
+                //        input.form-control.input-sm(type="text", ng-model="Product.reseller.town", ng-bind='Product.reseller.town')
+                //.form-group
+                //    label.col-sm-4.control-label Цена:
+                //    .col-sm-8
+                //        input.form-control.input-sm(type="text", ng-model="Product.reseller.price", ng-bind='Product.reseller.price')
+                //.form-group
+                //    label.col-sm-4.control-label Дата на Покупка:
+                //    .col-sm-8
+                //        input.form-control.input-sm(type="text", ng-model="Product.reseller.dateBought", ng-bind='Product.reseller.dateBought')
                 .form-group
                     label.col-sm-4.control-label Ключови думи:
                     .col-sm-8
@@ -84,8 +84,8 @@
                             .panel-body
                                 textarea.form-control(rows=5, ng-model='pros.content', ng-bind = 'pros.content')
                             .panel-footer.pros-color
-                                | User:&nbsp
-                                span(ng-bind = 'pros.userAdded')
+                                //| User:&nbsp
+                                //span(ng-bind = 'pros.userAdded')
                                 br
                                 | Date:&nbsp
                                 span(ng-bind = 'pros.dateAdded')
@@ -106,8 +106,8 @@
                             .panel-body
                                 textarea.form-control(rows=5, ng-model='cons.content', ng-bind = 'cons.content')
                             .panel-footer.cons-color
-                                | User:&nbsp
-                                span(ng-bind = 'cons.userAdded')
+                                //| User:&nbsp
+                                //span(ng-bind = 'cons.userAdded')
                                 br
                                 | Date:&nbsp
                                 span(ng-bind = 'cons.dateAdded')

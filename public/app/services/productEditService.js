@@ -41,10 +41,10 @@ app.factory('productsCRUD', function($http, $q, $resource) {
             p.flagIsNew = product.flagIsNew;
 
             p.name = product.name;
-            p.origin = product.origin;
-            p.maker = product.maker;
-            p.reseller = product.reseller;
-            p.productModel = product.productModel;
+//            p.origin = product.origin;
+//            p.maker = product.maker;
+//            p.reseller = product.reseller;
+//            p.productModel = product.productModel;
             p.keyWords = product.keyWords || 'n/a';
             p.category = product.category || 'n/a';
 

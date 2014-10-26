@@ -15,7 +15,7 @@ module.exports = {
         });
         readstream.on('error', function (err) {
             console.log('An error occurred!', err);
-            //throw err;
+            fs.createReadStream('./server/nopictureThumb.jpg').pipe(res);
         });
         readstream.pipe(res);
     },
@@ -57,7 +57,8 @@ module.exports = {
         var t = req.body;
         //console.log(t);
         //Adding to search buffer
-        //TODO remove unused values
+        //TODO remove unused values - autobot
+        //adds only keyword which did not exists yet.(not duplicates them)
         Search.update({name: 'n/a'},{ $addToSet: { buffer: { $each: t.keyWords } } },
             function(err, edited) {
                 if (err) {
@@ -67,10 +68,10 @@ module.exports = {
             });
         Products.findByIdAndUpdate({_id : req.params.id},{
                 name: t.name,
-                origin: t.origin,
-                maker: t.maker,
-                productModel: t.productModel,
-                reseller: t.reseller,
+                //origin: t.origin,
+               // maker: t.maker,
+                //productModel: t.productModel,
+                //reseller: t.reseller,
                 pros: t.pros,
                 cons: t.cons,
                 flagIsNew: t.flagIsNew,
