@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Grid = require('gridfs-stream');
 var db = mongoose.connection;
 var gfs = Grid(db.db, mongoose.mongo);
-
+var fs = require('fs');
 
 module.exports = {
     getImage: function(req, res, next) {
