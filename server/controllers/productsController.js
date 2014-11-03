@@ -1,24 +1,76 @@
-var Products = require('mongoose').model('Product');
-var Search = require('mongoose').model('SearchBuffer');
-var mongoose = require('mongoose');
-var Grid = require('gridfs-stream');
-var db = mongoose.connection;
-var gfs = Grid(db.db, mongoose.mongo);
-var fs = require('fs');
+var  Products = require('mongoose').model('Product')
+    ,Images = require('mongoose').model('Images')
+//var Search = require('mongoose').model('SearchBuffer')
+    ,mongoose = require('mongoose')
+//var Grid = require('gridfs-stream')
+    ,db = mongoose.connection
+//var gfs = Grid(db.db, mongoose.mongo)
+    ,fs = require('fs')
+    ,stream = require('streamifier')
+;
 
 module.exports = {
-    getImage: function(req, res, next) {
-        //console.log(req.params.id);
-        var readstream = gfs.createReadStream({
-            filename: req.params.id,
-            content_type: 'image/*'
+    DbClear: function (req, res, next) {
+        Images.remove({ready: false},function (err) {
+            if (err){
+                return res.end();
+            }
+            console.log('All orphaned Images been removed from DB!');
         });
-        readstream.on('error', function (err) {
-            console.log('An error occurred!', err);
-            fs.createReadStream('./server/nopictureThumb.jpg').pipe(res);
-        });
-        readstream.pipe(res);
+
+    res.end();
     },
+
+
+
+
+
+
+
+
+
+    updateProduct : function(req, res, next) {
+        var t = req.body;
+        var prosN = 0;
+        for (i = 0; i < t.pros.length; i++) {
+           if (!t.pros[i].flagIsNew){
+               prosN=prosN+1;
+           }
+        }
+        var consN = 0;
+        for (i = 0; i < t.cons.length; i++) {
+            if (!t.cons[i].flagIsNew){
+                consN=consN+1;
+            }
+        }
+
+
+        Products.findByIdAndUpdate({_id : req.params.id},{
+                name: t.name,
+                pros: t.pros,
+                cons: t.cons,
+                flagIsNew: t.flagIsNew,
+                flagNewCommentAdded: t.flagNewCommentAdded,
+                picture: t.picture,
+                consCount: consN,
+                prosCount: prosN
+            },
+            function(err, edited) {
+                if (err){
+                    console.log('Error: '+ err);
+                    return;
+                }
+                res.end();
+            });
+    },
+
+
+
+
+
+
+    // TODO ready so far
+
     getAllProducts: function(req, res, next) {
 
         //return new products only
@@ -52,76 +104,52 @@ module.exports = {
         })
 
     },
-
-    updateProduct : function(req, res, next) {
-        var t = req.body;
-        //console.log(t);
-        //Adding to search buffer
-        //TODO remove unused values - autobot
-        //adds only keyword which did not exists yet.(not duplicates them)
-        Search.update({name: 'n/a'},{ $addToSet: { buffer: { $each: t.keyWords } } },
-            function(err, edited) {
-                if (err) {
-                    console.log('Error: ' + err);
-                    return;
-                }
-            });
-        Products.findByIdAndUpdate({_id : req.params.id},{
-                name: t.name,
-                //origin: t.origin,
-               // maker: t.maker,
-                //productModel: t.productModel,
-                //reseller: t.reseller,
-                pros: t.pros,
-                cons: t.cons,
-                flagIsNew: t.flagIsNew,
-                flagNewCommentAdded: t.flagNewCommentAdded,
-                keyWords: t.keyWords,
-                category: t.category,
-                picture: t.picture
-            },
-            function(err, edited) {
-                if (err){
-                    console.log('Error: '+ err);
-                    return;
-                }
-                //console.log('Product with _id: '+ req.params.id + '   UPDATED');
-                res.end();
-            });
-    },
-
     removeProduct : function(req, res, next) {
-        //Get filename of the picture before product being removed
-        Products.findOneAndRemove({_id: req.params.id}).exec(function (err, collection) {
+        Products.findOneAndRemove({_id: req.params.id}).exec(function (err, product) {
             if (err) {
                 console.log('Products can not be loaded: ' + err);
             }
-            if (collection) {
+            if (product) {
                 //Remove the product picture from the GridFS
-                if (!!collection.picture) {
-                    gfs.remove({"filename": collection.picture[0].filename}, function (err, edited) {
+
+                if (product.thumbnail !== undefined && product.thumbnail!='na') {
+                    Images.findOneAndRemove({name:product.thumbnail}).exec(function (err, product) {
                         if (err) {
-                            console.log('Error: ' + err);
-                            return;
+                            console.log('Products can not be loaded: ' + err);
                         }
-                        console.log('Picture with filename: ' + collection.picture[0].filename + '   REMOVED');
                     });
-                } else {
-                    console.log('picture is missing');
-                }
-                if (!!collection.thumbnail) {
-                    gfs.remove({"filename": collection.thumbnail}, function (err, edited) {
-                        if (err) {
-                            console.log('Error: ' + err);
-                            return;
-                        }
-                        console.log('Thumbnail with filename: ' + collection.thumbnail + '   REMOVED');
-                    });
+
                 } else {
                     console.log('picture is missing');
                 }
             }
             res.end();
         });
+    },
+    getImage: function(req, res, next) {
+        if (req.params.id=='na' || req.params.id===undefined){
+            fs.createReadStream('./server/nopictureThumb.jpg').pipe(res);
+            return;
+        }
+        Images.findOne({name: req.params.id})
+            .exec(function(err, document) {
+                var t = stream.createReadStream(document.dataFile);
+                res.setHeader('Expires', new Date(Date.now() + 604800000));
+                res.setHeader('Content-Type', document.contentType);
+                t.pipe(res);
+            });
+    },
+    getThumb: function(req, res, next) {
+        if (req.params.id=='na' || req.params.id===undefined){
+            fs.createReadStream('./server/nopictureThumb.jpg').pipe(res);
+            return;
+        }
+        Images.findOne({name: req.params.id})
+            .exec(function(err, document) {
+                var t = stream.createReadStream(document.dataThumb);
+                res.setHeader('Expires', new Date(Date.now() + 604800000));
+                res.setHeader('Content-Type', document.contentType);
+                t.pipe(res);
+            });
     }
 };

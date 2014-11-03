@@ -1,10 +1,12 @@
 .container
     .row
-        .col-md-5
+        .col-md-6
             select.form-control(id='selected')
                 option New Only
                 option New Comments Only
                 option All Products
+        .col-md-6
+            button.btn.btn-danger.pull-right(ng-click='dbClear()') DB Clear
     br
     .container
         .row
@@ -13,7 +15,7 @@
                     .col-lg-12.col-md-12.col-sm-12
                         a.thumbnail(href='/productEdit/{{item._id}}')
                             p.fix-text-length Наименование:  {{item.name}}
-                            img.home-image(ng-src='/get_image/{{item.thumbnail}}')
+                            img.home-image(ng-src='/thumb/{{item.thumbnail}}')
     br
     ul.pager
         li

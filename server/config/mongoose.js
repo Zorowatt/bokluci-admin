@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     products = require('../models/Products'),
-    searchbuffer = require('../models/SearchBuffer');
+    searchbuffer = require('../models/SearchBuffer'),
+    images = require('../models/Images');
 
 
 module.exports = function(){

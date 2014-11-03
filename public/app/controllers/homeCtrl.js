@@ -9,6 +9,12 @@ app.controller('HomeCtrl',['$scope','$resource' ,function($scope, $resource) {
     $scope.step = 6; //show only five products per page
     var oldOrNew = 0; //show newly added products only
 
+
+    $scope.dbClear = function () {
+        var res = $resource('/api/clear');
+        res.query();
+    };
+
     //Initial product load
     $scope.products = load(pos,$scope.step,oldOrNew);
 

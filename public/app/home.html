@@ -1,12 +1,15 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-6">
       <select id="selected" class="form-control">
         <option>New Only</option>
         <option>New Comments Only</option>
         <option>All Products</option>
       </select>
+    </div>
+    <div class="col-md-6">
+      <button ng-click="dbClear()" class="btn btn-danger pull-right">DB Clear</button>
     </div>
   </div><br/>
   <div class="container">
@@ -14,7 +17,7 @@
       <ul class="list-inline">
         <li ng-repeat="item in products">
           <div class="col-lg-12 col-md-12 col-sm-12"><a href="/productEdit/{{item._id}}" class="thumbnail">
-              <p class="fix-text-length">Наименование:  {{item.name}}</p><img ng-src="/get_image/{{item.thumbnail}}" class="home-image"/></a></div>
+              <p class="fix-text-length">Наименование:  {{item.name}}</p><img ng-src="/thumb/{{item.thumbnail}}" class="home-image"/></a></div>
         </li>
       </ul>
     </div>

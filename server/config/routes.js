@@ -5,14 +5,16 @@ module.exports = function(app){
     //get all products from Home partial
     app.get('/api', controllers.products.getAllProducts);
     //get the image from gridFS by name
-    app.get('/get_image/:id', controllers.products.getImage);
+    app.get('/image/:id', controllers.products.getImage);
+    app.get('/thumb/:id', controllers.products.getThumb);
     //get product by its id from productEdit partial
     app.get('/api/product/:id', controllers.products.getProductById);
     //update product
     app.put('/api/:id', controllers.products.updateProduct);
     //delete product and its image as well
     app.get('/api/delete/:id', controllers.products.removeProduct);
-
+    //DB clear
+    app.get('/api/clear',controllers.products.DbClear);
 
     //Servicing Angular Routes
     //for Home page
