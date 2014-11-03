@@ -1,85 +1,36 @@
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-3"><img ng-src="/image/{{Product.thumbnail}}" class="fromEdit"/>
-      <form role="form" class="form-horizontal">
-        <!--.form-group
-        label.col-sm-4.control-label User:
-        .col-sm-8
-            input.form-control.input-sm(type="text", ng-model="Product.picture[0].userAdded ", ng-bind='Product.picture[0].userAdded')
-        -->
-        <div class="form-group">
-          <label class="col-sm-4 control-label">Date for the picture:</label>
-          <div class="col-sm-8">
-            <input type="text" ng-model="Product.picture[0].dateAdded" ng-bind="Product.picture[0].dateAdded" class="form-control input-sm"/>
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="col-md-9">
-      <form role="form" class="form-horizontal">
-        <div class="form-group">
-          <label class="col-sm-4 control-label">Наименование:</label>
-          <div class="col-sm-8">
-            <input autofocus="autofocus" type="text" ng-model="Product.name" ng-bind="Product.name" class="form-control"/>
-          </div>
-        </div>
-        <!--.form-group-->
-        <!--    label.col-sm-4.control-label Производител:-->
-        <!--    .col-sm-8-->
-        <!--        input.form-control.input-sm(type="text", ng-model="Product.maker", ng-bind='Product.maker')-->
-        <!--.form-group-->
-        <!--    label.col-sm-4.control-label Модел:-->
-        <!--    .col-sm-8-->
-        <!--        input.form-control.input-sm(type="text", ng-model="Product.productModel", ng-bind='Product.productModel')-->
-        <!--.form-group-->
-        <!--    label.col-sm-4.control-label Произход:-->
-        <!--    .col-sm-8-->
-        <!--        input.form-control.input-sm(type="text", ng-model="Product.origin", ng-bind='Product.origin')-->
-        <!--.form-group-->
-        <!--    label.col-sm-4.control-label Магазин име:-->
-        <!--    .col-sm-8-->
-        <!--        input.form-control.input-sm(type="text", ng-model="Product.reseller.name", ng-bind='Product.reseller.name')-->
-        <!--.form-group-->
-        <!--    label.col-sm-4.control-label Закупен в Град:-->
-        <!--    .col-sm-8-->
-        <!--        input.form-control.input-sm(type="text", ng-model="Product.reseller.town", ng-bind='Product.reseller.town')-->
-        <!--.form-group-->
-        <!--    label.col-sm-4.control-label Цена:-->
-        <!--    .col-sm-8-->
-        <!--        input.form-control.input-sm(type="text", ng-model="Product.reseller.price", ng-bind='Product.reseller.price')-->
-        <!--.form-group-->
-        <!--    label.col-sm-4.control-label Дата на Покупка:-->
-        <!--    .col-sm-8-->
-        <!--        input.form-control.input-sm(type="text", ng-model="Product.reseller.dateBought", ng-bind='Product.reseller.dateBought')-->
-        <div class="form-group">
-          <label class="col-sm-4 control-label">Ключови думи:</label>
-          <div class="col-sm-8">
-            <input type="text" ng-model="keyWords" class="form-control input-sm"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-4 control-label">Категории:</label>
-          <div class="col-sm-8">
-            <input type="text" ng-model="category" class="form-control input-sm"/>
-          </div>
-        </div>
-      </form>
+  <div class="media"><a href="" ng-click="showMe()" class="pull-left">
+      <div id="imgShow" class="thumbnail"><img alt="Няма Снимка" ng-if="Product.thumbnail" ng-src="/thumb/{{Product.thumbnail}}" class="media-object"/></div></a>
+    <div class="media-body">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="Product.flagNewCommentAdded" ng-bind="Product.flagNewCommentAdded" ng-change="changeForUpdate()"/>Is new comment
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="Product.flagIsNew" ng-bind="Product.flagIsNew" ng-change="changeForUpdate()" class="checkbox"/>Is it new
+        </label>
+      </div><a href="/" ng-click="updateProduct()" ng-show="readyForUpdate" class="btn btn-primary">Update</a><a href="/" ng-click="deleteProduct()" class="btn btn-warning">Delete</a>
     </div>
   </div>
-  <div class="container"><br/>
-    <form class="form-inline">
-      <label class="checkbox">Is new comment
-        <input type="checkbox" ng-model="Product.flagNewCommentAdded" ng-bind="Product.flagNewCommentAdded" ng-change="changeForUpdate()" class="checkbox"/>
-      </label>
-    </form>
-    <form class="form-inline">
-      <label class="checkbox">Is new
-        <input type="checkbox" ng-model="Product.flagIsNew" ng-bind="Product.flagIsNew" ng-change="changeForUpdate()" class="checkbox"/>
-      </label>
-    </form>
-    <button id="update" ng-click="updateProduct()" class="btn btn-primary">Update</button><a href="/" ng-click="deleteProduct()" class="btn btn-warning">Delete</a>
-  </div>
+  <form role="form" class="form-horizontal">
+    <div class="form-group">
+      <label class="col-sm-4 control-label">Наименование:</label>
+      <div class="col-sm-8">
+        <input autofocus="autofocus" type="text" ng-model="Product.name" ng-bind="Product.name" ng-change="changeForUpdate()" class="form-control"/>
+      </div>
+    </div>
+  </form>
+  <form role="form" class="form-horizontal">
+    <div class="form-group">
+      <label class="col-sm-4 control-label">Дата на добавяне:</label>
+      <div class="col-sm-8">
+        <input type="text" ng-model="Product.dateAdded" ng-bind="Product.dateAdded" class="form-control input-sm"/>
+      </div>
+    </div>
+  </form>
   <hr/>
   <div class="row">
     <div class="col-md-6">
@@ -92,21 +43,18 @@
                 <form class="form-inline">
                   <div class="form-group">
                     <div class="checkbox">
-                      <label>is New
-                        <input type="checkbox" ng-model="pros.flagIsNew" ng-bind="pros.flagIsNew" ng-change="changeForUpdate()"/>
+                      <label>
+                        <input type="checkbox" ng-model="pros.flagIsNew" ng-bind="pros.flagIsNew" ng-change="changeForUpdate()"/>is New
                       </label>
+                      <button ng-click="removeCommentFromPros(pros)" class="btn btn-warning pull-right">Remove</button>
                     </div>
-                    <button ng-click="removeCommentFromPros(pros)" class="btn btn-warning">Remove</button>
                   </div>
                 </form>
               </div>
               <div class="panel-body">
                 <textarea rows="5" ng-model="pros.content" ng-bind="pros.content" class="form-control"></textarea>
               </div>
-              <div class="panel-footer pros-color">
-                <!--| User:&nbsp-->
-                <!--span(ng-bind = 'pros.userAdded')--><br/>Date:&nbsp<span ng-bind="pros.dateAdded"></span>
-              </div>
+              <div class="panel-footer pros-color"><br/>Date:&nbsp<span ng-bind="pros.dateAdded | limitTo : 10"></span></div>
             </li>
           </ul>
         </div>
@@ -122,21 +70,18 @@
                 <form class="form-inline">
                   <div class="form-group">
                     <div class="checkbox">
-                      <label>is New
-                        <input type="checkbox" ng-model="cons.flagIsNew" ng-bind="cons.flagIsNew" ng-change="changeForUpdate()" class="checkbox"/>
+                      <label>
+                        <input type="checkbox" ng-model="cons.flagIsNew" ng-bind="cons.flagIsNew" ng-change="changeForUpdate()" class="checkbox"/>is New
                       </label>
+                      <button ng-click="removeCommentFromCons(cons)" class="btn btn-warning pull-right">Remove</button>
                     </div>
-                    <button ng-click="removeCommentFromCons(cons)" class="btn btn-warning">Remove</button>
                   </div>
                 </form>
               </div>
               <div class="panel-body">
                 <textarea rows="5" ng-model="cons.content" ng-bind="cons.content" class="form-control"></textarea>
               </div>
-              <div class="panel-footer cons-color">
-                <!--| User:&nbsp-->
-                <!--span(ng-bind = 'cons.userAdded')--><br/>Date:&nbsp<span ng-bind="cons.dateAdded"></span>
-              </div>
+              <div class="panel-footer cons-color"><br/>Date:&nbsp<span ng-bind="cons.dateAdded | limitTo : 10"></span></div>
             </li>
           </ul>
         </div>

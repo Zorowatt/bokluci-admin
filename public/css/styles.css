@@ -17,7 +17,7 @@ footer {
 
 /*----------------------------------------- for Home page ------------------------------------------*/
 
-.thumbnail{
+.fromHome{
     display: block;
     width: 140px;
     min-height: 250px;
@@ -57,7 +57,10 @@ img.fromEdit /*Оразмерява thumbnail*/
     font-size: 12px;
 }
 
-
+#imgShow{
+    max-width: 130px;
+    max-height: 130px;
+}
 /*Настройка на падащите менюта*/
 /*.dropdown-submenu {*/
     /*position: relative;*/

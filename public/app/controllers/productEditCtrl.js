@@ -1,37 +1,41 @@
 app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'productsCRUD',
     function($scope, $routeParams, $resource, productsCRUD) {
 
+    $scope.readyForUpdate = false;
+
     var p = $resource('/api/product/:id',{id: $routeParams.id});
     p.get().$promise.then(function(product) {
                 $scope.Product = product;
-                $scope.keyWords = product.keyWords.toString();
-                $scope.category = product.category.toString();
+                //$scope.keyWords = product.keyWords.toString();
+                //$scope.category = product.category.toString();
                 //console.log(typeof product.picture[0].dateAdded);
-                $scope.Product.picture[0].dateAdded = product.picture[0].dateAdded.substring(0,10);
+                //$scope.Product.picture[0].dateAdded = product.picture[0].dateAdded.substring(0,10);
 
         });
 
-
-    //Enable/Disable button Update
-    $('#update').prop('disabled', true);
-        $scope.changeForUpdate = function(){
-            $('#update').prop('disabled', false);
+    $scope.changeForUpdate = function () {
+        $scope.readyForUpdate = true;
         };
-    $(document).on('input',  function() {
-        $('#update').prop('disabled', false);
-    });
+    //Enable/Disable button Update
+//    $('#update').prop('disabled', true);
+//        $scope.changeForUpdate = function(){
+//            $('#update').prop('disabled', false);
+//        };
+//    $(document).on('input',  function() {
+//        $('#update').prop('disabled', false);
+//    });
 
     //Update product
     $scope.updateProduct = function(){
         //Keywords & Categories
-        $scope.Product.keyWords = $scope.keyWords.split(",");
-        $scope.Product.category = $scope.category.split(",");
+        //$scope.Product.keyWords = $scope.keyWords.split(",");
+        //$scope.Product.category = $scope.category.split(",");
         //Keywords & Categories end
 
         productsCRUD.update($scope.Product);
 
         //Disable Update button
-        $('#update').prop('disabled', true);
+        //$('#update').prop('disabled', true);
 
         alert('Updated !');
 
@@ -53,7 +57,8 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
 
     //Remove comments
     $scope.removeCommentFromPros = function (ele) {
-        $('#update').prop('disabled', false);
+        //$('#update').prop('disabled', false);
+        $scope.readyForUpdate = true;
         var index = $scope.Product.pros.indexOf(ele);
         if (index > -1) {
             $scope.Product.pros.splice(index, 1);
@@ -61,7 +66,8 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
 
     };
     $scope.removeCommentFromCons = function (ele) {
-        $('#update').prop('disabled', false);
+        //$('#update').prop('disabled', false);
+        $scope.readyForUpdate = true;
         var index = $scope.Product.cons.indexOf(ele);
         if (index > -1) {
             $scope.Product.cons.splice(index, 1);

@@ -21,14 +21,6 @@ module.exports = {
     res.end();
     },
 
-
-
-
-
-
-
-
-
     updateProduct : function(req, res, next) {
         var t = req.body;
         var prosN = 0;
@@ -151,5 +143,6 @@ module.exports = {
                 res.setHeader('Content-Type', document.contentType);
                 t.pipe(res);
             });
+
     }
 };

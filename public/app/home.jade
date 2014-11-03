@@ -13,7 +13,7 @@
             ul.list-inline
                 li(ng-repeat='item in products')
                     .col-lg-12.col-md-12.col-sm-12
-                        a.thumbnail(href='/productEdit/{{item._id}}')
+                        a.thumbnail.fromHome(href='/productEdit/{{item._id}}')
                             p.fix-text-length Наименование:  {{item.name}}
                             img.home-image(ng-src='/thumb/{{item.thumbnail}}')
     br
