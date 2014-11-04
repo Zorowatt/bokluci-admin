@@ -35,26 +35,24 @@
   <div class="row">
     <div class="col-md-6">
       <div class="panel panel-success">
-        <div class="panel-heading">ЗА:</div>
-        <div class="panel-body">
+        <div class="panel-heading">Мнения:</div>
+        <div class="panel-body pross">
           <ul class="list-unstyled">
             <li ng-repeat="pros in Product.pros" class="panel panel-default">
               <div class="panel-heading">
-                <form class="form-inline">
-                  <div class="form-group">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" ng-model="pros.flagIsNew" ng-bind="pros.flagIsNew" ng-change="changeForUpdate()"/>is New
-                      </label>
-                      <button ng-click="removeCommentFromPros(pros)" class="btn btn-warning pull-right">Remove</button>
-                    </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="pros.flagIsNew" ng-bind="pros.flagIsNew" ng-change="changeForUpdate()"/>is New
+                  </label>
+                  <div class="label pull-right vert">
+                    <button ng-click="removeCommentFromPros(pros)" class="btn btn-warning btn-sm">Remove</button>
                   </div>
-                </form>
+                </div>
               </div>
               <div class="panel-body">
-                <textarea rows="5" ng-model="pros.content" ng-bind="pros.content" class="form-control"></textarea>
+                <textarea msd-elastic="msd-elastic" ng-model="pros.content" ng-bind="pros.content" class="form-control"></textarea>
+                <hr class="horrow"/><span ng-bind="pros.dateAdded | limitTo : 10" class="data pull-right"></span>
               </div>
-              <div class="panel-footer pros-color"><br/>Date:&nbsp<span ng-bind="pros.dateAdded | limitTo : 10"></span></div>
             </li>
           </ul>
         </div>
@@ -67,21 +65,19 @@
           <ul class="list-unstyled">
             <li ng-repeat="cons in Product.cons" class="panel panel-default">
               <div class="panel-heading">
-                <form class="form-inline">
-                  <div class="form-group">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" ng-model="cons.flagIsNew" ng-bind="cons.flagIsNew" ng-change="changeForUpdate()" class="checkbox"/>is New
-                      </label>
-                      <button ng-click="removeCommentFromCons(cons)" class="btn btn-warning pull-right">Remove</button>
-                    </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="cons.flagIsNew" ng-bind="cons.flagIsNew" ng-change="changeForUpdate()" class="checkbox"/>is New
+                  </label>
+                  <div class="label pull-right vert">
+                    <button ng-click="removeCommentFromCons(cons)" class="btn btn-warning btn-sm">Remove</button>
                   </div>
-                </form>
+                </div>
               </div>
               <div class="panel-body">
-                <textarea rows="5" ng-model="cons.content" ng-bind="cons.content" class="form-control"></textarea>
+                <textarea msd-elastic="msd-elastic" ng-model="cons.content" ng-bind="cons.content" class="form-control"></textarea>
+                <hr class="horrow"/><span ng-bind="cons.dateAdded | limitTo : 10" class="data pull-right"></span>
               </div>
-              <div class="panel-footer cons-color"><br/>Date:&nbsp<span ng-bind="cons.dateAdded | limitTo : 10"></span></div>
             </li>
           </ul>
         </div>

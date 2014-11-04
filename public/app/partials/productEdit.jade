@@ -34,24 +34,21 @@
     .row
         .col-md-6
             .panel.panel-success
-                .panel-heading ЗА:
-                .panel-body
+                .panel-heading Мнения:
+                .panel-body.pross
                     ul.list-unstyled
                         li.panel.panel-default(ng-repeat='pros in Product.pros')
                             .panel-heading
-                                form.form-inline
-                                    .form-group
-                                        .checkbox
-                                            label
-                                                input(type="checkbox", ng-model='pros.flagIsNew', ng-bind = 'pros.flagIsNew', ng-change='changeForUpdate()')
-                                                | is New
-                                            button.btn.btn-warning.pull-right(ng-click="removeCommentFromPros(pros)") Remove
+                                .checkbox
+                                    label
+                                        input(type="checkbox", ng-model='pros.flagIsNew', ng-bind = 'pros.flagIsNew', ng-change='changeForUpdate()')
+                                        | is New
+                                    .label.pull-right.vert
+                                        button.btn.btn-warning.btn-sm(ng-click="removeCommentFromPros(pros)") Remove
                             .panel-body
-                                textarea.form-control(rows=5, ng-model='pros.content', ng-bind = 'pros.content')
-                            .panel-footer.pros-color
-                                br
-                                | Date:&nbsp
-                                span(ng-bind = 'pros.dateAdded | limitTo : 10')
+                                textarea.form-control(msd-elastic, ng-model='pros.content', ng-bind = 'pros.content')
+                                hr.horrow
+                                span.data.pull-right(ng-bind = 'pros.dateAdded | limitTo : 10')
 
         .col-md-6
             .panel.panel-danger
@@ -60,18 +57,15 @@
                     ul.list-unstyled
                         li.panel.panel-default(ng-repeat='cons in Product.cons')
                             .panel-heading
-                                form.form-inline
-                                    .form-group
-                                        .checkbox
-                                            label
-                                                input.checkbox(type="checkbox", ng-model='cons.flagIsNew', ng-bind = 'cons.flagIsNew', ng-change='changeForUpdate()')
-                                                | is New
-                                            button.btn.btn-warning.pull-right(ng-click="removeCommentFromCons(cons)") Remove
+                                .checkbox
+                                    label
+                                        input.checkbox(type="checkbox", ng-model='cons.flagIsNew', ng-bind = 'cons.flagIsNew', ng-change='changeForUpdate()')
+                                        | is New
+                                    .label.pull-right.vert
+                                        button.btn.btn-warning.btn-sm(ng-click="removeCommentFromCons(cons)") Remove
                             .panel-body
-                                textarea.form-control(rows=5, ng-model='cons.content', ng-bind = 'cons.content')
-                            .panel-footer.cons-color
-                                br
-                                | Date:&nbsp
-                                span(ng-bind = 'cons.dateAdded | limitTo : 10')
+                                textarea.form-control(msd-elastic, ng-model='cons.content', ng-bind = 'cons.content')
+                                hr.horrow
+                                span.data.pull-right(ng-bind = 'cons.dateAdded | limitTo : 10')
 
 
