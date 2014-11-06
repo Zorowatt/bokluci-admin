@@ -1,7 +1,32 @@
-app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'productsCRUD',
-    function($scope, $routeParams, $resource, productsCRUD) {
+app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'productsCRUD','$modal',
+    function($scope, $routeParams, $resource, productsCRUD,$modal) {
 
     $scope.readyForUpdate = false;
+
+
+        $scope.showMe = function () {
+            var modalInstance = $modal.open({
+                templateUrl: '/p/partials/showMe',
+                controller: 'ShowMeCtrl'
+                //,backdrop: 'static'
+                //,keyboard: false
+                //,size: 'sm'
+                ,resolve: {
+                    message : function () {
+                        return $scope.Product.thumbnail;
+                    }
+                }
+            });
+            modalInstance.result.then(function (result) {
+                if (result == 'close') {
+                    $modalInstance.dismiss('close');
+                }
+
+            });
+        };
+
+
+
 
     var p = $resource('/api/product/:id',{id: $routeParams.id});
     p.get().$promise.then(function(product) {
@@ -12,6 +37,19 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
                 //$scope.Product.picture[0].dateAdded = product.picture[0].dateAdded.substring(0,10);
 
         });
+
+    $scope.rotateLeft = function () {
+        $resource('/left/:id',{id: $scope.Product.thumbnail}).get().$promise.then(function(product) {
+        alert('Image rotation carried out!!!\nClear the cache to view the new image');
+
+        });
+    };
+
+
+
+
+
+
 
     $scope.changeForUpdate = function () {
         $scope.readyForUpdate = true;

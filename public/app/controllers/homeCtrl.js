@@ -11,8 +11,8 @@ app.controller('HomeCtrl',['$scope','$resource' ,function($scope, $resource) {
 
 
     $scope.dbClear = function () {
-        var res = $resource('/api/clear');
-        res.query();
+        $resource('/api/clear').query();
+        alert('DB cleared!!!');
     };
 
     //Initial product load

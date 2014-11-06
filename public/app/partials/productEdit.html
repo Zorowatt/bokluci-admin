@@ -2,6 +2,7 @@
 <div class="container">
   <div class="media"><a href="" ng-click="showMe()" class="pull-left">
       <div id="imgShow" class="thumbnail"><img alt="Няма Снимка" ng-if="Product.thumbnail" ng-src="/thumb/{{Product.thumbnail}}" class="media-object"/></div></a>
+    <button ng-click="rotateLeft()" class="btn btn-default">Left Rotate</button>
     <div class="media-body">
       <div class="checkbox">
         <label>
@@ -10,7 +11,7 @@
       </div>
       <div class="checkbox">
         <label>
-          <input type="checkbox" ng-model="Product.flagIsNew" ng-bind="Product.flagIsNew" ng-change="changeForUpdate()" class="checkbox"/>Is it new
+          <input type="checkbox" ng-model="Product.flagIsNew" ng-bind="Product.flagIsNew" ng-change="changeForUpdate()"/>Is it new
         </label>
       </div><a href="/" ng-click="updateProduct()" ng-show="readyForUpdate" class="btn btn-primary">Update</a><a href="/" ng-click="deleteProduct()" class="btn btn-warning">Delete</a>
     </div>
@@ -50,8 +51,7 @@
                 </div>
               </div>
               <div class="panel-body">
-                <textarea msd-elastic="msd-elastic" ng-model="pros.content" ng-bind="pros.content" class="form-control"></textarea>
-                <hr class="horrow"/><span ng-bind="pros.dateAdded | limitTo : 10" class="data pull-right"></span>
+                <textarea msd-elastic="msd-elastic" ng-model="pros.content" ng-bind="pros.content" class="form-control"></textarea><span ng-bind="pros.dateAdded | limitTo : 10" class="data pull-right"></span>
               </div>
             </li>
           </ul>
@@ -67,7 +67,7 @@
               <div class="panel-heading">
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" ng-model="cons.flagIsNew" ng-bind="cons.flagIsNew" ng-change="changeForUpdate()" class="checkbox"/>is New
+                    <input type="checkbox" ng-model="cons.flagIsNew" ng-bind="cons.flagIsNew" ng-change="changeForUpdate()"/>is New
                   </label>
                   <div class="label pull-right vert">
                     <button ng-click="removeCommentFromCons(cons)" class="btn btn-warning btn-sm">Remove</button>
@@ -75,8 +75,7 @@
                 </div>
               </div>
               <div class="panel-body">
-                <textarea msd-elastic="msd-elastic" ng-model="cons.content" ng-bind="cons.content" class="form-control"></textarea>
-                <hr class="horrow"/><span ng-bind="cons.dateAdded | limitTo : 10" class="data pull-right"></span>
+                <textarea msd-elastic="msd-elastic" ng-model="cons.content" ng-bind="cons.content" class="form-control"></textarea><span ng-bind="cons.dateAdded | limitTo : 10" class="data pull-right"></span>
               </div>
             </li>
           </ul>

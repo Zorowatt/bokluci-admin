@@ -7,9 +7,35 @@ var  Products = require('mongoose').model('Product')
 //var gfs = Grid(db.db, mongoose.mongo)
     ,fs = require('fs')
     ,stream = require('streamifier')
+    ,gm = require('gm').subClass({ imageMagick: true })
 ;
 
 module.exports = {
+
+    rotateLeft: function (req, res) {
+        Images.findOne({name: req.params.id})
+            .exec(function(err, document) {
+                var fileExt = document.contentType.split('/').pop();
+                gm(document.dataThumb)
+                .rotate('white', 90)
+                .toBuffer(fileExt,function (err, buffer) {
+                    if (err)  return res.end(err);
+                    Images.update({name: req.params.id},{dataThumb:buffer},function (err, numberAffected, raw) {
+                        if (err) return res.end(err);
+                        res.end();
+                    });
+                });
+                gm(document.dataFile)
+                .rotate('white', 90)
+                .toBuffer(fileExt,function (err, buffer) {
+                    if (err)  return res.end(err);
+                    Images.update({name: req.params.id},{dataFile:buffer},function (err, numberAffected, raw) {
+                        if (err) return res.end(err);
+                        res.end();
+                    });
+                });
+            });
+    },
     DbClear: function (req, res, next) {
         Images.remove({ready: false},function (err) {
             if (err){

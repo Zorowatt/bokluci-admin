@@ -2,6 +2,11 @@ var controllers = require('../controllers');
 
 module.exports = function(app){
 
+
+    //Image rotate
+    app.get('/left/:id',controllers.products.rotateLeft);
+
+
     //get all products from Home partial
     app.get('/api', controllers.products.getAllProducts);
     //get the image from gridFS by name
@@ -15,6 +20,8 @@ module.exports = function(app){
     app.get('/api/delete/:id', controllers.products.removeProduct);
     //DB clear
     app.get('/api/clear',controllers.products.DbClear);
+
+
 
     //Servicing Angular Routes
     //for Home page

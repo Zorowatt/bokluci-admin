@@ -3,6 +3,9 @@
         a.pull-left(href='', ng-click='showMe()')
             .thumbnail#imgShow
                 img.media-object(alt="Няма Снимка",ng-if="Product.thumbnail", ng-src='/thumb/{{Product.thumbnail}}')
+        button.btn.btn-default(ng-click='rotateLeft()') Left Rotate
+
+
 
         .media-body
             .checkbox
@@ -11,7 +14,7 @@
                     | Is new comment
             .checkbox
                 label
-                    input.checkbox(type="checkbox", ng-model='Product.flagIsNew', ng-bind = 'Product.flagIsNew', ng-change='changeForUpdate()')
+                    input(type="checkbox", ng-model='Product.flagIsNew', ng-bind = 'Product.flagIsNew', ng-change='changeForUpdate()')
                     | Is it new
 
             a.btn.btn-primary(href='/', ng-click="updateProduct()", ng-show = 'readyForUpdate') Update
@@ -47,7 +50,7 @@
                                         button.btn.btn-warning.btn-sm(ng-click="removeCommentFromPros(pros)") Remove
                             .panel-body
                                 textarea.form-control(msd-elastic, ng-model='pros.content', ng-bind = 'pros.content')
-                                hr.horrow
+
                                 span.data.pull-right(ng-bind = 'pros.dateAdded | limitTo : 10')
 
         .col-md-6
@@ -59,13 +62,11 @@
                             .panel-heading
                                 .checkbox
                                     label
-                                        input.checkbox(type="checkbox", ng-model='cons.flagIsNew', ng-bind = 'cons.flagIsNew', ng-change='changeForUpdate()')
+                                        input(type="checkbox", ng-model='cons.flagIsNew', ng-bind = 'cons.flagIsNew', ng-change='changeForUpdate()')
                                         | is New
                                     .label.pull-right.vert
                                         button.btn.btn-warning.btn-sm(ng-click="removeCommentFromCons(cons)") Remove
                             .panel-body
                                 textarea.form-control(msd-elastic, ng-model='cons.content', ng-bind = 'cons.content')
-                                hr.horrow
+
                                 span.data.pull-right(ng-bind = 'cons.dateAdded | limitTo : 10')
-
-

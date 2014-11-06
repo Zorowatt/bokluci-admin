@@ -56,27 +56,20 @@ img.fromEdit /*Оразмерява thumbnail*/
     color: #2d6ca2;
     font-size: 12px;
 }
-
 #imgShow{
     max-width: 130px;
     max-height: 130px;
 }
-
-
-
 .vert{
     padding-top: 0;
     margin-top: -2px;
     margin-right: -6px;
 }
-.horrow{
-    margin-bottom: 2px;
-}
 span.data{
     font-size: .8em;
     color: grey;
+    padding-top: 5px;
 }
-
 @media (max-height: 669px) {
     .pross{
         max-height:300px;
@@ -90,7 +83,24 @@ span.data{
     }
 }
 
+.ppp{
+    padding-bottom: 30px;
+}
+@media (max-width: 550px) {
+    .adj{
+        max-width: 300px;
+    }
+    img.fromShow {
+        max-height: 100px;
+        max-width: 500px;
+    }
 
+}
+@media (max-width: 350px) {
+    .adj{
+        max-width: 200px;
+    }
+}
 /*Настройка на падащите менюта*/
 /*.dropdown-submenu {*/
     /*position: relative;*/
