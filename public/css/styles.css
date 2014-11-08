@@ -7,16 +7,84 @@ body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizelegibility;
 }
-footer {
-    background: #333;
-    color: #eee;
-    font-size: 11px;
-    padding: 20px;
-}
+/*footer {*/
+    /*background: #333;*/
+    /*color: #eee;*/
+    /*font-size: 11px;*/
+    /*padding: 20px;*/
+/*}*/
 
 
 /*----------------------------------------- for Home page ------------------------------------------*/
+.nothing{
+    max-width: 500px;
+    padding-bottom: 30px;
+    font-weight: bold;
+}
+.aaa {
+    width: 100%;
+    text-align: center;
+}
+.aaa li {
+    display: inline-block; /* the key bit */
+    *display: inline; /* IE7 hack */
+    *zoom: 1; /* IE7 hack */
+}
+.thumbnail .home{
+    display: block;
+    min-width: 150px;
+    min-height: 250px;
+}
+#imgsize{
+    min-width: 150px;
+    min-height: 150px;
+    margin-bottom: 10px;
+    display: flex; /* add */
+    justify-content: center; /* add to align horizontal */
+    align-items: center; /* add to align vertical */
+}
+#bellow{
+    text-align: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: .9em;
+    color: #000000;
+}
+.badge{
+    background-color: cornflowerblue;
+}
+hr.seen{
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+.seen{
+    font-size: .9em;
+}
+.thumbnail .newTopic {
+    /*font-size: 22px;*/
+    position: absolute;
+    margin-top: -15px;
+    margin-left: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.thumbnail .newComent {
+    /*font-size: 22px;*/
+    position: absolute;
+    margin-top: -15px;
+    margin-left: 64px;
 
+}
+.width{
+    margin-top: 8px;
+    max-width: 290px;
+}
+@media (max-width: 400px) {
+    .width{
+        margin-top: 8px;
+        max-width: 100px;
+    }
+}
 .fromHome{
     display: block;
     width: 140px;
@@ -180,9 +248,6 @@ span.data{
 	/*margin-top: 20px;*/
 	/*display: none;*/
 /*}*/
-
-
-
 
 
 

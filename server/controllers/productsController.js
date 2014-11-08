@@ -93,10 +93,13 @@ module.exports = {
 
         //return new products only
         var options = {flagIsNew : true};
+        //return old products only
+        if (req.query.new == '1') {options = {flagIsNew:false}}
         //return products w/ new comments only
-        if (req.query.new == '1') {options = {flagNewCommentAdded:true} }
+        if (req.query.new == '2') {options = {flagNewCommentAdded:true} }
         //return all products
-        if (req.query.new == '2') {options = {}}
+        if (req.query.new == '3') {options = {}}
+
 
         var limit = req.query.l;
         var skip = req.query.s;

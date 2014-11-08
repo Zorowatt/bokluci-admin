@@ -1,29 +1,28 @@
 app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'productsCRUD','$modal',
     function($scope, $routeParams, $resource, productsCRUD,$modal) {
-
+    window.scrollTo(0, 0);
     $scope.readyForUpdate = false;
 
 
-        $scope.showMe = function () {
-            var modalInstance = $modal.open({
-                templateUrl: '/p/partials/showMe',
-                controller: 'ShowMeCtrl'
-                //,backdrop: 'static'
-                //,keyboard: false
-                //,size: 'sm'
-                ,resolve: {
-                    message : function () {
-                        return $scope.Product.thumbnail;
-                    }
+    $scope.showMe = function () {
+        var modalInstance = $modal.open({
+            templateUrl: '/p/partials/showMe',
+            controller: 'ShowMeCtrl'
+            //,backdrop: 'static'
+            //,keyboard: false
+            //,size: 'sm'
+            ,resolve: {
+                message : function () {
+                    return $scope.Product.thumbnail;
                 }
-            });
-            modalInstance.result.then(function (result) {
-                if (result == 'close') {
-                    $modalInstance.dismiss('close');
-                }
-
-            });
-        };
+            }
+        });
+        modalInstance.result.then(function (result) {
+            if (result == 'close') {
+                $modalInstance.dismiss('close');
+            }
+        });
+    };
 
 
 
@@ -65,6 +64,7 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
 
     //Update product
     $scope.updateProduct = function(){
+        $scope.readyForUpdate = false;
         //Keywords & Categories
         //$scope.Product.keyWords = $scope.keyWords.split(",");
         //$scope.Product.category = $scope.category.split(",");
@@ -75,7 +75,7 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
         //Disable Update button
         //$('#update').prop('disabled', true);
 
-        alert('Updated !');
+        alert('Всички промени са актуализирани!');
 
 
     };
@@ -113,4 +113,12 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
 
     };
 
+    //before page scape checks for is update made
+    $scope.$on('$routeChangeStart', function(next, current) {
+        if ($scope.readyForUpdate){
+            if (confirm('Има промени, които не са актуализирани!!!\nИзкате ли да бъдат потвърдени?')){
+                $scope.updateProduct();
+            }
+        }
+    });
 }]);

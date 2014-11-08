@@ -15,11 +15,11 @@ var productSchema = mongoose.Schema ({
         content: String,
         flagIsNew : Boolean
     }],
-    picture: [{
-        filename: String,
-        dateAdded: Date
-        //userAdded: String
-    }],
+//    picture: [{
+//        filename: String,
+//        dateAdded: Date
+//        //userAdded: String
+//    }],
     consCount: Number,
     prosCount: Number,
     thumbnail: String,

@@ -1,27 +1,37 @@
 
+<div role="navigation" class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <!--label Показвай:-->
+      <button ng-click="dbClear()" class="btn btn-danger pull-right width">Почисти</button>
+      <select ng-model="selectedChoice" ng-options="choice.content for choice in choices" class="form-control width"></select>
+    </div>
+  </div>
+</div><br/><br/>
 <div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <select id="selected" class="form-control">
-        <option>New Only</option>
-        <option>New Comments Only</option>
-        <option>All Products</option>
-      </select>
+  <div class="topone center-block">
+    <div class="input-group addProdSearch">
+      <input ng-enter="ent()" type="text" ng-model="search" typeahead="a for a in getProd($viewValue)" typeahead-min-length="2" typeahead-on-select="sel()" class="form-control search"/><span class="input-group-btn">
+        <button type="button" ng-click="goSearch()" class="btn btn-default">Намери</button></span>
     </div>
-    <div class="col-md-6">
-      <button ng-click="dbClear()" class="btn btn-danger pull-right">DB Clear</button>
-    </div>
-  </div><br/>
-  <div class="container">
-    <div class="row">
-      <ul class="list-inline">
-        <li ng-repeat="item in products">
-          <div class="col-lg-12 col-md-12 col-sm-12"><a href="/productEdit/{{item._id}}" class="thumbnail fromHome">
-              <p class="fix-text-length">Наименование:  {{item.name}}</p><img ng-src="/thumb/{{item.thumbnail}}" class="home-image"/></a></div>
-        </li>
-      </ul>
-    </div>
-  </div><br/>
+  </div>
+</div><br/>
+<hr/>
+<div class="container">
+  <div ng-show="nothing" class="well center-block nothing">
+    <p class="text-center">{{info}}</p>
+  </div>
+  <ul class="list-inline aaa">
+    <li ng-repeat="item in products"><a href="/productEdit/{{item._id}}" class="thumbnail home"><span ng-show="item.flagIsNew" class="center-block label label-danger newTopic">Ново</span><span ng-show="item.flagNewCommentAdded" class="center-block label label-warning newComent">Нов Коментар</span>
+        <label tooltip="{{item.name}}">{{name(item.name)}}</label>
+        <div id="imgsize"><img ng-src="/thumb/{{item.thumbnail}}" class="img-rounded home-image"/></div>
+        <div id="bellow">
+          <p>Мнения:<span class="pull-right badge">{{getNumber(item.pros)}}</span></p>
+          <p>Препоръки:<span class="pull-right badge">{{getNumber(item.cons)}}</span></p>
+          <hr class="seen"/>
+          <p class="seen">Видяно:<span class="pull-right badge seen">{{item.visited}}</span></p>
+        </div></a></li>
+  </ul><br/>
   <ul class="pager">
     <li><a href="" ng-click="prev()" class="btn btn-default">Prew</a></li>
     <li><a href="" ng-click="next()" class="btn btn-default">Next</a></li>

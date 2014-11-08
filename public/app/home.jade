@@ -1,21 +1,43 @@
+
+.navbar.navbar-default.navbar-fixed-top(role='navigation')
+    .navbar-inner
+        .container
+            //label Показвай:
+            button.btn.btn-danger.pull-right.width(ng-click='dbClear()') Почисти
+            select.form-control.width(ng-model="selectedChoice" ng-options="choice.content for choice in choices")
+
+br
+br
 .container
-    .row
-        .col-md-6
-            select.form-control(id='selected')
-                option New Only
-                option New Comments Only
-                option All Products
-        .col-md-6
-            button.btn.btn-danger.pull-right(ng-click='dbClear()') DB Clear
-    br
-    .container
-        .row
-            ul.list-inline
-                li(ng-repeat='item in products')
-                    .col-lg-12.col-md-12.col-sm-12
-                        a.thumbnail.fromHome(href='/productEdit/{{item._id}}')
-                            p.fix-text-length Наименование:  {{item.name}}
-                            img.home-image(ng-src='/thumb/{{item.thumbnail}}')
+    .topone.center-block
+        .input-group.addProdSearch
+            input.form-control.search(ng-enter='ent()', type="text" ng-model="search" typeahead="a for a in getProd($viewValue)",typeahead-min-length=2, typeahead-on-select='sel()')
+            span.input-group-btn
+                button.btn.btn-default(type="button", ng-click='goSearch()') Намери
+br
+hr
+.container
+    .well.center-block.nothing(ng-show='nothing')
+        p.text-center {{info}}
+    ul.list-inline.aaa
+        li(ng-repeat='item in products')
+            a.thumbnail.home(href='/productEdit/{{item._id}}')
+                span.center-block.label.label-danger.newTopic(ng-show='item.flagIsNew') Ново
+                span.center-block.label.label-warning.newComent(ng-show='item.flagNewCommentAdded') Нов Коментар
+                label(tooltip="{{item.name}}") {{name(item.name)}}
+
+                #imgsize
+                    img.img-rounded.home-image(ng-src='/thumb/{{item.thumbnail}}')
+
+                #bellow
+                    p Мнения:
+                        span.pull-right.badge {{getNumber(item.pros)}}
+                    p Препоръки:
+                        span.pull-right.badge {{getNumber(item.cons)}}
+                    hr.seen
+                    p.seen Видяно:
+                        span.pull-right.badge.seen {{item.visited}}
+
     br
     ul.pager
         li
