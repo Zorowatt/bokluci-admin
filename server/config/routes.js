@@ -6,6 +6,7 @@ module.exports = function(app){
     //Image rotate
     app.get('/left/:id',controllers.products.rotateLeft);
 
+    app.post('/api/search', controllers.search.searchSuggestions);
 
     //get all products from Home partial
     app.get('/api', controllers.products.getAllProducts);

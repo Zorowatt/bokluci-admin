@@ -9,10 +9,10 @@
   </div>
 </div><br/><br/>
 <div class="container">
-  <div class="topone center-block">
+  <div class="center-block search">
     <div class="input-group addProdSearch">
-      <input ng-enter="ent()" type="text" ng-model="search" typeahead="a for a in getProd($viewValue)" typeahead-min-length="2" typeahead-on-select="sel()" class="form-control search"/><span class="input-group-btn">
-        <button type="button" ng-click="goSearch()" class="btn btn-default">Намери</button></span>
+      <input ng-enter="ent()" type="text" ng-model="search" typeahead="a for a in getProd($viewValue)" typeahead-min-length="2" typeahead-on-select="sel()" class="form-control"/><span class="input-group-btn">
+        <button type="button" ng-click="goSearch()" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></span>
     </div>
   </div>
 </div><br/>

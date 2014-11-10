@@ -3,7 +3,7 @@
    -------------------------------------- */
 
 body {
-    padding-top: 70px; /*body to be below the navbar*/
+    padding-top: 30px; /*body to be below the navbar*/
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizelegibility;
 }
@@ -16,6 +16,14 @@ body {
 
 
 /*----------------------------------------- for Home page ------------------------------------------*/
+
+.thumbnail {
+    box-shadow: 5px 5px 10px #888888;
+}
+.search {
+    max-width: 400px;
+}
+
 .nothing{
     max-width: 500px;
     padding-bottom: 30px;
@@ -29,11 +37,15 @@ body {
     display: inline-block; /* the key bit */
     *display: inline; /* IE7 hack */
     *zoom: 1; /* IE7 hack */
+    padding-right: 10px;
+    padding-left: 10px;
 }
-.thumbnail .home{
+.thumbnail.home{
     display: block;
     min-width: 150px;
     min-height: 250px;
+    text-decoration: none;
+    width: 170px;
 }
 #imgsize{
     min-width: 150px;
@@ -76,13 +88,15 @@ hr.seen{
 
 }
 .width{
+
     margin-top: 8px;
     max-width: 290px;
 }
 @media (max-width: 400px) {
     .width{
+        font-size: .9em;
         margin-top: 8px;
-        max-width: 100px;
+        max-width: 190px;
     }
 }
 .fromHome{

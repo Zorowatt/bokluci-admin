@@ -82,7 +82,7 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
 
     //Remove product
     $scope.deleteProduct = function () {
-        if (confirm('You are about to DELETE the entire Product?')){
+        if (confirm('Така ще изтриете цялата тем!!!?')){
             //productsCRUD.delete($scope.Product);
             var p = $resource('/api/delete/:id',{id: $routeParams.id});
             p.get().$promise.then(function(product) {

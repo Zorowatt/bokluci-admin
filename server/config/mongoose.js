@@ -20,7 +20,7 @@ module.exports = function(){
     });
 
     products.seedInitialProducts();
-    searchbuffer.seedInitialBuffer();
+
 
 //    var userSchema = mongoose.Schema ({
 //        username: String,
