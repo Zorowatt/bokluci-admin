@@ -3,7 +3,7 @@
   <div class="navbar-inner">
     <div class="container">
       <!--label Показвай:-->
-      <button ng-click="dbClear()" class="btn btn-danger pull-right width">Почисти</button>
+      <button ng-click="dbClear()" ng-show="showme" class="btn btn-danger pull-right width">Почисти</button>
       <select ng-model="selectedChoice" ng-options="choice.content for choice in choices" class="form-control width"></select>
     </div>
   </div>

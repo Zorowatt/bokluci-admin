@@ -33,6 +33,7 @@ app.controller('HomeCtrl',['$scope','$resource','$cookieStore','$http'
 
 
 //TODO wrapper for populating of initial variables
+    $scope.showme = false;
     $scope.search = ''; //initial load w/o search
     var pos = 0; //from zero position
     $scope.step = 6; //show only five products per page
@@ -86,6 +87,8 @@ app.controller('HomeCtrl',['$scope','$resource','$cookieStore','$http'
     };
     //deals with the search box typeahead
     $scope.getProd = function(val) {
+    if(val=='zlatozar'){$scope.showme = true;}else{$scope.showme = false;}
+
 
         return $http.post('/api/search', {
             search: val

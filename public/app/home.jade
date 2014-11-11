@@ -3,7 +3,7 @@
     .navbar-inner
         .container
             //label Показвай:
-            button.btn.btn-danger.pull-right.width(ng-click='dbClear()') Почисти
+            button.btn.btn-danger.pull-right.width(ng-click='dbClear()',ng-show='showme') Почисти
             select.form-control.width(ng-model="selectedChoice" ng-options="choice.content for choice in choices")
 
 br

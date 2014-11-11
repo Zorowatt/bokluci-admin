@@ -139,8 +139,9 @@ img.fromEdit /*Оразмерява thumbnail*/
     font-size: 12px;
 }
 #imgShow{
-    max-width: 130px;
-    max-height: 130px;
+    padding-top: 10px;
+    max-width: 150px;
+    max-height: 150px;
 }
 .vert{
     padding-top: 0;

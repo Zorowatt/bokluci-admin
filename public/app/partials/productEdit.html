@@ -1,24 +1,24 @@
 
 <div class="container">
   <div class="media"><a href="" ng-click="showMe()" class="pull-left">
-      <div id="imgShow" class="thumbnail"><img alt="Няма Снимка" ng-if="Product.thumbnail" ng-src="/thumb/{{Product.thumbnail}}" class="media-object"/></div></a>
-    <button ng-click="rotateLeft()" class="btn btn-default">Left Rotate</button>
+      <div class="thumbnail"><img id="imgShow" alt="Няма Снимка" ng-if="Product.thumbnail" ng-src="/thumb/{{Product.thumbnail}}" class="media-object"/></div></a>
+    <button ng-click="rotateLeft()" class="btn btn-default">Завърти на ляво</button>
     <div class="media-body">
       <div class="checkbox">
         <label>
-          <input type="checkbox" ng-model="Product.flagNewCommentAdded" ng-bind="Product.flagNewCommentAdded" ng-change="changeForUpdate()"/>Is new comment
+          <input type="checkbox" ng-model="Product.flagNewCommentAdded" ng-bind="Product.flagNewCommentAdded" ng-change="changeForUpdate()"/>Нов коментар е добавен
         </label>
       </div>
       <div class="checkbox">
         <label>
-          <input type="checkbox" ng-model="Product.flagIsNew" ng-bind="Product.flagIsNew" ng-change="changeForUpdate()"/>Is it new
+          <input type="checkbox" ng-model="Product.flagIsNew" ng-bind="Product.flagIsNew" ng-change="changeForUpdate()"/>Нова тема
         </label>
       </div><a href="/" ng-click="updateProduct()" ng-show="readyForUpdate" class="btn btn-primary">Update</a><a href="/" ng-click="deleteProduct()" class="btn btn-warning">Delete</a>
     </div>
   </div>
   <form role="form" class="form-horizontal">
     <div class="form-group">
-      <label class="col-sm-4 control-label">Наименование:</label>
+      <label class="col-sm-4 control-label">Тема:</label>
       <div class="col-sm-8">
         <input autofocus="autofocus" type="text" ng-model="Product.name" ng-bind="Product.name" ng-change="changeForUpdate()" class="form-control"/>
       </div>
@@ -43,10 +43,10 @@
               <div class="panel-heading">
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" ng-model="pros.flagIsNew" ng-bind="pros.flagIsNew" ng-change="changeForUpdate()"/>is New
+                    <input type="checkbox" ng-model="pros.flagIsNew" ng-bind="pros.flagIsNew" ng-change="changeForUpdate()"/>Ново
                   </label>
                   <div class="label pull-right vert">
-                    <button ng-click="removeCommentFromPros(pros)" class="btn btn-warning btn-sm">Remove</button>
+                    <button ng-click="removeCommentFromPros(pros)" class="btn btn-warning btn-sm">Махни</button>
                   </div>
                 </div>
               </div>
@@ -60,17 +60,17 @@
     </div>
     <div class="col-md-6">
       <div class="panel panel-danger">
-        <div class="panel-heading">ПРОТИВ:</div>
+        <div class="panel-heading">Препоръки:</div>
         <div class="panel-body">
           <ul class="list-unstyled">
             <li ng-repeat="cons in Product.cons" class="panel panel-default">
               <div class="panel-heading">
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" ng-model="cons.flagIsNew" ng-bind="cons.flagIsNew" ng-change="changeForUpdate()"/>is New
+                    <input type="checkbox" ng-model="cons.flagIsNew" ng-bind="cons.flagIsNew" ng-change="changeForUpdate()"/>Ново
                   </label>
                   <div class="label pull-right vert">
-                    <button ng-click="removeCommentFromCons(cons)" class="btn btn-warning btn-sm">Remove</button>
+                    <button ng-click="removeCommentFromCons(cons)" class="btn btn-warning btn-sm">Махни</button>
                   </div>
                 </div>
               </div>
