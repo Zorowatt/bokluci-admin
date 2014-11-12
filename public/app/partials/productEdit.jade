@@ -1,24 +1,38 @@
-.container
+.navbar.navbar-fixed-top.navbar-default(role='navigation')
+    .navbar-inner
+        a.btn.btn-primary.upd(href='/', ng-click="updateProduct()", ng-show = 'readyForUpdate') Update
+        a.btn.btn-danger.pull-right.rmv(href='', ng-click = 'deleteProduct()') Изтрий темата
+
+.container.mmm
     .media
-        a.pull-left(href='', ng-click='showMe()')
-            .thumbnail
-                img#imgShow.media-object(alt="Няма Снимка",ng-if="Product.thumbnail", ng-src='/thumb/{{Product.thumbnail}}')
-        button.btn.btn-default(ng-click='rotateLeft()') Завърти на ляво
+        .pull-left
+            .text-center.padbod
+                button.btn.btn-default.btn-xs(tooltip="Завърти снимката на 90 гр.", ng-click='rotateImg()', ng-disabled='onoff')
+                    span.glyphicon.glyphicon-repeat
+                button.btn.btn-default.btn-xs(tooltip="Премахни снимката", ng-click='removeImg()', ng-disabled='onoff')
+                    span.glyphicon.glyphicon-remove-circle
+                button.btn.btn-default.btn-xs(tooltip="Забрани/банирай снимката", ng-click='bannedImg()', ng-disabled='onoff')
+                    span.glyphicon.glyphicon-ban-circle
+            a(href='', ng-click='showMe()')
+                .thumbnail
+                    img#imgShow.media-object(alt="Няма Снимка",ng-if="Product.thumbnail", ng-src='{{imageSource}}')
+
 
 
 
         .media-body
-            .checkbox
-                label
-                    input(type="checkbox", ng-model='Product.flagNewCommentAdded', ng-bind = 'Product.flagNewCommentAdded', ng-change='changeForUpdate()')
-                    | Нов коментар е добавен
-            .checkbox
-                label
-                    input(type="checkbox", ng-model='Product.flagIsNew', ng-bind = 'Product.flagIsNew', ng-change='changeForUpdate()')
-                    | Нова тема
+            .pad
+                .checkbox
+                    label
+                        input(type="checkbox", ng-model='Product.flagNewCommentAdded', ng-bind = 'Product.flagNewCommentAdded', ng-change='changeForUpdate()')
+                        | Нов коментар
+                .checkbox
+                    label
+                        input(type="checkbox", ng-model='Product.flagIsNew', ng-bind = 'Product.flagIsNew', ng-change='changeForUpdate()')
+                        | Нова тема
 
-            a.btn.btn-primary(href='/', ng-click="updateProduct()", ng-show = 'readyForUpdate') Update
-            a.btn.btn-warning(href='/', ng-click = 'deleteProduct()') Delete
+                //a.btn.btn-primary(href='/', ng-click="updateProduct()", ng-show = 'readyForUpdate') Update
+                //a.btn.btn-danger(href='/', ng-click = 'deleteProduct()') Изтрий темата
 
 
 
@@ -47,7 +61,7 @@
                                         input(type="checkbox", ng-model='pros.flagIsNew', ng-bind = 'pros.flagIsNew', ng-change='changeForUpdate()')
                                         | Ново
                                     .label.pull-right.vert
-                                        button.btn.btn-warning.btn-sm(ng-click="removeCommentFromPros(pros)") Махни
+                                        button.btn.btn-danger.btn-sm(ng-click="removeCommentFromPros(pros)") Махни
                             .panel-body
                                 textarea.form-control(msd-elastic, ng-model='pros.content', ng-bind = 'pros.content')
 
@@ -65,7 +79,7 @@
                                         input(type="checkbox", ng-model='cons.flagIsNew', ng-bind = 'cons.flagIsNew', ng-change='changeForUpdate()')
                                         | Ново
                                     .label.pull-right.vert
-                                        button.btn.btn-warning.btn-sm(ng-click="removeCommentFromCons(cons)") Махни
+                                        button.btn.btn-danger.btn-sm(ng-click="removeCommentFromCons(cons)") Махни
                             .panel-body
                                 textarea.form-control(msd-elastic, ng-model='cons.content', ng-bind = 'cons.content')
 

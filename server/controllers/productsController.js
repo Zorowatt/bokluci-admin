@@ -206,9 +206,13 @@ function escapeRegExp(string) {
 }
 module.exports = {
 
-    rotateLeft: function (req, res) {
+    rotateImage: function (req, res) {
         Images.findOne({name: req.params.id})
             .exec(function(err, document) {
+                if(!document){
+                    res.end();
+                    return;
+                }
                 var fileExt = document.contentType.split('/').pop();
                 gm(document.dataThumb)
                 .rotate('white', 90)
@@ -216,7 +220,7 @@ module.exports = {
                     if (err)  return res.end(err);
                     Images.update({name: req.params.id},{dataThumb:buffer},function (err, numberAffected, raw) {
                         if (err) return res.end(err);
-                        res.end();
+                        //res.end();
                     });
                 });
                 gm(document.dataFile)
@@ -228,7 +232,34 @@ module.exports = {
                         res.end();
                     });
                 });
+
             });
+    },
+    removeImage: function (req, res) {
+        Images.findOneAndRemove({name: req.params.id})
+            .exec(function(err, document) {
+
+                if(err) {res.end(err)}
+            });
+        res.end();
+    },
+    banImage: function (req, res) {
+        fs.readFile('./server/banned.jpg', function (err, data ) {
+            if(err){res.end(err);}
+            Images.findOneAndUpdate({name: req.params.id},{
+                    dataFile: data,
+                    dataThumb: data
+                },
+                function(err, edited) {
+                    if (err){
+                        console.log('Error: '+ err);
+                        return;
+                    }
+                    res.end();
+                });
+        });
+
+
     },
     DbClear: function (req, res, next) {
         Images.remove({ready: false},function (err) {
@@ -240,7 +271,6 @@ module.exports = {
 
     res.end();
     },
-
     updateProduct : function(req, res, next) {
         var t = req.body;
         var prosN = 0;
@@ -275,14 +305,6 @@ module.exports = {
                 res.end();
             });
     },
-
-
-
-
-
-
-    // TODO ready so far
-
     getAllProducts: function(req, res, next) {
 
         //remove not allowed symbols
@@ -402,6 +424,10 @@ module.exports = {
         }
         Images.findOne({name: req.params.id})
             .exec(function(err, document) {
+                if(!document){
+                    fs.createReadStream('./server/nopictureThumb.jpg').pipe(res);
+                    return;
+                }
                 var t = stream.createReadStream(document.dataFile);
                 res.setHeader('Expires', new Date(Date.now() + 604800000));
                 res.setHeader('Content-Type', document.contentType);
@@ -409,12 +435,18 @@ module.exports = {
             });
     },
     getThumb: function(req, res, next) {
+
         if (req.params.id=='na' || req.params.id===undefined){
             fs.createReadStream('./server/nopictureThumb.jpg').pipe(res);
             return;
         }
+
         Images.findOne({name: req.params.id})
             .exec(function(err, document) {
+                if(!document){
+                    fs.createReadStream('./server/nopictureThumb.jpg').pipe(res);
+                    return;
+                }
                 var t = stream.createReadStream(document.dataThumb);
                 res.setHeader('Expires', new Date(Date.now() + 604800000));
                 res.setHeader('Content-Type', document.contentType);

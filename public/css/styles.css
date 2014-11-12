@@ -118,6 +118,27 @@ hr.seen{
 
 
 /*------------------------------------------- for Edit Page --------------------------------------------*/
+.navbar{
+    background-color: white;
+    box-shadow: 0px 10px 20px  #fff;
+}
+.mmm {
+    padding-top: 40px;
+}
+.upd{
+    margin-top: 7px;
+    margin-left: 7px;
+}
+.rmv{
+    margin-top: 7px;
+    margin-right: 7px;
+}
+.pad{
+    padding-left: 10px;
+}
+.padbod{
+    padding-bottom:  5px;
+}
 img.fromEdit /*Оразмерява thumbnail*/
 {
     max-height:300px;
@@ -182,6 +203,9 @@ span.data{
 @media (max-width: 350px) {
     .adj{
         max-width: 200px;
+    }
+    .pad{
+        font-size: .9em;
     }
 }
 /*Настройка на падащите менюта*/

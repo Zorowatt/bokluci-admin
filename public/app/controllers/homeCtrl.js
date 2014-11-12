@@ -47,6 +47,11 @@ app.controller('HomeCtrl',['$scope','$resource','$cookieStore','$http'
 
 
 
+
+
+
+
+
 //TODO wrapper for search box
     //When iten been selected from typeahead
     $scope.sel = function () {

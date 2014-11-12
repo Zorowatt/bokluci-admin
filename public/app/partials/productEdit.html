@@ -1,19 +1,35 @@
 
-<div class="container">
-  <div class="media"><a href="" ng-click="showMe()" class="pull-left">
-      <div class="thumbnail"><img id="imgShow" alt="Няма Снимка" ng-if="Product.thumbnail" ng-src="/thumb/{{Product.thumbnail}}" class="media-object"/></div></a>
-    <button ng-click="rotateLeft()" class="btn btn-default">Завърти на ляво</button>
+<div role="navigation" class="navbar navbar-fixed-top navbar-default">
+  <div class="navbar-inner"><a href="/" ng-click="updateProduct()" ng-show="readyForUpdate" class="btn btn-primary upd">Update</a><a href="" ng-click="deleteProduct()" class="btn btn-danger pull-right rmv">Изтрий темата</a></div>
+</div>
+<div class="container mmm">
+  <div class="media">
+    <div class="pull-left">
+      <div class="text-center padbod">
+        <button tooltip="Завърти снимката на 90 гр." ng-click="rotateImg()" ng-disabled="onoff" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-repeat"></span></button>
+        <button tooltip="Премахни снимката" ng-click="removeImg()" ng-disabled="onoff" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove-circle"></span></button>
+        <button tooltip="Забрани/банирай снимката" ng-click="bannedImg()" ng-disabled="onoff" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ban-circle"></span></button>
+      </div><a href="" ng-click="showMe()">
+        <div class="thumbnail"><img id="imgShow" alt="Няма Снимка" ng-if="Product.thumbnail" ng-src="{{imageSource}}" class="media-object"/></div></a>
+    </div>
     <div class="media-body">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" ng-model="Product.flagNewCommentAdded" ng-bind="Product.flagNewCommentAdded" ng-change="changeForUpdate()"/>Нов коментар е добавен
-        </label>
+      <div class="pad">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="Product.flagNewCommentAdded" ng-bind="Product.flagNewCommentAdded" ng-change="changeForUpdate()"/>Нов коментар
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="Product.flagIsNew" ng-bind="Product.flagIsNew" ng-change="changeForUpdate()"/>Нова тема
+          </label>
+        </div>
+        <!--a.btn.btn-primary(href='/', ng-click="updateProduct()", ng-show = 'readyForUpdate') Update-->
+        <!--a.btn.btn-danger(href='/', ng-click = 'deleteProduct()') Изтрий темата-->
+        
+        
+        
       </div>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" ng-model="Product.flagIsNew" ng-bind="Product.flagIsNew" ng-change="changeForUpdate()"/>Нова тема
-        </label>
-      </div><a href="/" ng-click="updateProduct()" ng-show="readyForUpdate" class="btn btn-primary">Update</a><a href="/" ng-click="deleteProduct()" class="btn btn-warning">Delete</a>
     </div>
   </div>
   <form role="form" class="form-horizontal">
@@ -46,7 +62,7 @@
                     <input type="checkbox" ng-model="pros.flagIsNew" ng-bind="pros.flagIsNew" ng-change="changeForUpdate()"/>Ново
                   </label>
                   <div class="label pull-right vert">
-                    <button ng-click="removeCommentFromPros(pros)" class="btn btn-warning btn-sm">Махни</button>
+                    <button ng-click="removeCommentFromPros(pros)" class="btn btn-danger btn-sm">Махни</button>
                   </div>
                 </div>
               </div>
@@ -70,7 +86,7 @@
                     <input type="checkbox" ng-model="cons.flagIsNew" ng-bind="cons.flagIsNew" ng-change="changeForUpdate()"/>Ново
                   </label>
                   <div class="label pull-right vert">
-                    <button ng-click="removeCommentFromCons(cons)" class="btn btn-warning btn-sm">Махни</button>
+                    <button ng-click="removeCommentFromCons(cons)" class="btn btn-danger btn-sm">Махни</button>
                   </div>
                 </div>
               </div>

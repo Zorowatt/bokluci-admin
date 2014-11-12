@@ -245,6 +245,14 @@ app.controller('ShowMeCtrl',['$scope','$modalInstance','message'
         $scope.closeMe = function () {
             $modalInstance.dismiss('close');
         };
+
+        $scope.app = {
+            imageUrl: "/image/"+message
+        };
+        var random = (new Date()).toString();
+        $scope.imageSource = $scope.app.imageUrl+'?df='+random;
+
+
     }]);
 //this is to prevent typeahead /search suggestion / auto select when Enter key being pressed
 app.config(["$provide", function ($provide) {

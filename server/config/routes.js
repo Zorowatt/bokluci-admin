@@ -4,7 +4,13 @@ module.exports = function(app){
 
 
     //Image rotate
-    app.get('/left/:id',controllers.products.rotateLeft);
+    app.get('/rotateImage/:id',controllers.products.rotateImage);
+    //Image rotate
+    app.get('/removeImage/:id',controllers.products.removeImage);
+    //Image rotate
+    app.get('/banImage/:id',controllers.products.banImage);
+
+
 
     app.post('/api/search', controllers.search.searchSuggestions);
 
