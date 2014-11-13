@@ -1,4 +1,4 @@
-var app = angular.module('app',['ngResource','ngRoute','ui.bootstrap','ngCookies']);
+var app = angular.module('app',['ngResource','ngRoute','ui.bootstrap','ngCookies','cgBusy']);
 
 
 app.config(function($locationProvider, $routeProvider) {
@@ -523,10 +523,15 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
 
 
         $scope.rotateImg = function () {
+
+//        var User  = $resource('/rotateImage/:id', {id: $scope.Product.thumbnail});
+//        $scope.myPromise = User.$save();
+
+
             if (confirm('Да завъртя ли снимката???')) {
                 $scope.onoff = true;
-                $resource('/rotateImage/:id', {id: $scope.Product.thumbnail}).get().$promise.then(function (product) {
-                    alert('Image rotation carried out!!!\nClear the cache to view the new image');
+                $scope.myPromise = $resource('/rotateImage/:id', {id: $scope.Product.thumbnail}).get().$promise.then(function (product) {
+                    //alert('Image rotation carried out!!!\nClear the cache to view the new image');
                     //Workaround to force image to reload after rotate been carried out
                     $scope.app = {
                         imageUrl: "/thumb/" + $scope.Product.thumbnail
@@ -540,9 +545,7 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
         $scope.removeImg = function () {
             if (confirm('Да премахна ли снимката???')) {
                 $scope.onoff = true;
-                $resource('/removeImage/:id', {id: $scope.Product.thumbnail}).get().$promise.then(function (product) {
-                    alert('Снимката е премахната!!!');
-
+                $scope.myPromise = $resource('/removeImage/:id', {id: $scope.Product.thumbnail}).get().$promise.then(function (product) {
                     //Workaround to force image to reload after rotate been carried out
                     $scope.app = {
                         imageUrl: "/thumb/" + $scope.Product.thumbnail
@@ -556,8 +559,7 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
         $scope.bannedImg = function () {
             if (confirm('Да забраня/банирам ли снимката???')) {
                 $scope.onoff = true;
-                $resource('/banImage/:id', {id: $scope.Product.thumbnail}).get().$promise.then(function (product) {
-                    alert('Снимката е забранена!!!');
+                $scope.myPromise = $resource('/banImage/:id', {id: $scope.Product.thumbnail}).get().$promise.then(function (product) {
                     //Workaround to force image to reload after rotate been carried out
 
                     $scope.app = {

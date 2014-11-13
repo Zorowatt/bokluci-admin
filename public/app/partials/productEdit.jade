@@ -7,6 +7,7 @@
     .media
         .pull-left
             .text-center.padbod
+                div(cg-busy="{promise:myPromise,message:'Моля изчакайте'}")
                 button.btn.btn-default.btn-xs(tooltip="Завърти снимката на 90 гр.", ng-click='rotateImg()', ng-disabled='onoff')
                     span.glyphicon.glyphicon-repeat
                 button.btn.btn-default.btn-xs(tooltip="Премахни снимката", ng-click='removeImg()', ng-disabled='onoff')
