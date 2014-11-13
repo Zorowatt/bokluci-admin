@@ -17,6 +17,16 @@ body {
 
 /*----------------------------------------- for Home page ------------------------------------------*/
 
+.testSvg {
+    padding-left: 5px;
+    padding-right: 5px;
+
+    /*position: absolute;*/
+}
+
+
+
+
 .thumbnail {
     box-shadow: 5px 5px 10px #888888;
 }

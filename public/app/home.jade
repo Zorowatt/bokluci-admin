@@ -18,12 +18,15 @@ br
 
 br
 hr
+
 .container
     .well.center-block.nothing(ng-show='nothing')
         p.text-center {{info}}
     ul.list-inline.aaa
         li(ng-repeat='item in products')
             a.thumbnail.home(href='/productEdit/{{item._id}}')
+
+
                 span.center-block.label.label-danger.newTopic(ng-show='item.flagIsNew') Ново
                 span.center-block.label.label-warning.newComent(ng-show='item.flagNewCommentAdded') Нов Коментар
                 label(tooltip="{{item.name}}") {{name(item.name)}}

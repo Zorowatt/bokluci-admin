@@ -1,5 +1,10 @@
-app.controller('HomeCtrl',['$scope','$resource','$cookieStore','$http'
-    ,function($scope, $resource, $cookieStore, $http) {
+app.controller('HomeCtrl',['$scope','$resource','$cookieStore','$http','$timeout'
+    ,function($scope, $resource, $cookieStore, $http,$timeout) {
+
+
+
+
+
 
 //TODO wraper which deals with selection box
     //creates cookie with current selection if not exists

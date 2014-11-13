@@ -3,6 +3,9 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
     window.scrollTo(0, 0);
     $scope.readyForUpdate = false;
     $scope.onoff=false;
+    $scope.rotationInProgres = false;
+    $scope.removingInProgres = false;
+    $scope.banningInProgres = false;
 
     $scope.showMe = function () {
         if ($scope.onoff){return}
@@ -50,6 +53,7 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
 
 
         if (confirm('Да завъртя ли снимката???')) {
+            $scope.rotationInProgres = true;
             $scope.onoff = true;
             $scope.myPromise = $resource('/rotateImage/:id', {id: $scope.Product.thumbnail}).get().$promise.then(function (product) {
                 //alert('Image rotation carried out!!!\nClear the cache to view the new image');
@@ -60,11 +64,14 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
                 var random = (new Date()).toString();
                 $scope.imageSource = $scope.app.imageUrl + '?df=' + random;
                 $scope.onoff = false;
+                $scope.rotationInProgres = false;
             });
         }
     };
     $scope.removeImg = function () {
+
         if (confirm('Да премахна ли снимката???')) {
+            $scope.removingInProgres = true;
             $scope.onoff = true;
             $scope.myPromise = $resource('/removeImage/:id', {id: $scope.Product.thumbnail}).get().$promise.then(function (product) {
                 //Workaround to force image to reload after rotate been carried out
@@ -74,11 +81,13 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
                 var random = (new Date()).toString();
                 $scope.imageSource = $scope.app.imageUrl + '?df=' + random;
                 $scope.onoff = false;
+                $scope.removingInProgres = false;
             });
         }
     };
     $scope.bannedImg = function () {
         if (confirm('Да забраня/банирам ли снимката???')) {
+            $scope.banningInProgres = true;
             $scope.onoff = true;
             $scope.myPromise = $resource('/banImage/:id', {id: $scope.Product.thumbnail}).get().$promise.then(function (product) {
                 //Workaround to force image to reload after rotate been carried out
@@ -89,7 +98,7 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
                 var random = (new Date()).toString();
                 $scope.imageSource = $scope.app.imageUrl + '?df=' + random;
                 $scope.onoff = false;
-
+                $scope.banningInProgres = false;
 
             });
         }
