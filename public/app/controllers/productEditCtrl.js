@@ -1,5 +1,5 @@
 app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'productsCRUD','$modal','$location',
-    function($scope, $routeParams, $resource, productsCRUD,$modal,$location) {
+    function($scope, $routeParams, $resource, productsCRUD, $modal, $location) {
     window.scrollTo(0, 0);
     $scope.readyForUpdate = false;
     $scope.onoff=false;
@@ -111,19 +111,8 @@ app.controller('ProductEditCtrl',['$scope', '$routeParams', '$resource', 'produc
     //Update product
     $scope.updateProduct = function(){
         $scope.readyForUpdate = false;
-        //Keywords & Categories
-        //$scope.Product.keyWords = $scope.keyWords.split(",");
-        //$scope.Product.category = $scope.category.split(",");
-        //Keywords & Categories end
-
         productsCRUD.update($scope.Product);
-
-        //Disable Update button
-        //$('#update').prop('disabled', true);
-
         alert('Всички промени са актуализирани!');
-
-
     };
 
     //Remove product

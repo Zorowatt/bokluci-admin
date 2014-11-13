@@ -168,4 +168,15 @@ app.controller('HomeCtrl',['$scope','$resource','$cookieStore','$http'
         });
         return i;
     };
+
+
+//TODO wrapper - reloads thumb image(avoid caching)
+    $scope.giveMeThumb = function (img) {
+        var random = (new Date()).toString();
+        $scope.app = {
+            imageUrl: "/thumb/"+img
+        };
+        var random = (new Date()).toString();
+        return $scope.app.imageUrl+'?df='+random;;
+    }
 }]);

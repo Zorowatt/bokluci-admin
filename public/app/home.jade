@@ -29,7 +29,8 @@ hr
                 label(tooltip="{{item.name}}") {{name(item.name)}}
 
                 #imgsize
-                    img.img-rounded.home-image(ng-src='/thumb/{{item.thumbnail}}')
+                    img.img-rounded.home-image(ng-src='{{giveMeThumb(item.thumbnail)}}')
+                    //img.img-rounded.home-image(ng-src='/thumb/{{item.thumbnail}}')
 
                 #bellow
                     p Мнения:

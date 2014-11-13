@@ -24,7 +24,9 @@
   <ul class="list-inline aaa">
     <li ng-repeat="item in products"><a href="/productEdit/{{item._id}}" class="thumbnail home"><span ng-show="item.flagIsNew" class="center-block label label-danger newTopic">Ново</span><span ng-show="item.flagNewCommentAdded" class="center-block label label-warning newComent">Нов Коментар</span>
         <label tooltip="{{item.name}}">{{name(item.name)}}</label>
-        <div id="imgsize"><img ng-src="/thumb/{{item.thumbnail}}" class="img-rounded home-image"/></div>
+        <div id="imgsize"><img ng-src="{{giveMeThumb(item.thumbnail)}}" class="img-rounded home-image"/>
+          <!--img.img-rounded.home-image(ng-src='/thumb/{{item.thumbnail}}')-->
+        </div>
         <div id="bellow">
           <p>Мнения:<span class="pull-right badge">{{getNumber(item.pros)}}</span></p>
           <p>Препоръки:<span class="pull-right badge">{{getNumber(item.cons)}}</span></p>
